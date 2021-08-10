@@ -1,0 +1,16 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node main.js",
+    "start": ""
+  },
+  "keywords": [],
+  "author": "pabloc54",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.17.1"
+  }
+}
