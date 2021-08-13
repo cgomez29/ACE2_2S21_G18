@@ -1,8 +1,8 @@
 # Hosting 
-La API será hosteada en github pages, en el enlace ...
+De momento la API no será hosteada.
 
 # Base de datos
-Se utilizará una base de datos JSON de manera local para
+Se utilizará una base de datos JSON de manera local.
 
 # Funcionamiento de la API
 La API recibe datos para almacenarla en la JSON database. La API será realizada con el framework Express JS.
