@@ -1,0 +1,9 @@
+GET http://localhost:3000/humedad
+###
+
+POST http://localhost:3000/humedad
+content-type: application/json
+
+{
+  "datos": 200
+}

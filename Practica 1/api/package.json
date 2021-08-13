@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "dev": "node main.js",
+    "dev": "nodemon main.js",
     "start": ""
   },
   "keywords": [],
@@ -12,5 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "4.17.1"
-  }
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "nodemon": "^2.0.12"
+  },
+  "type": "module"
 }

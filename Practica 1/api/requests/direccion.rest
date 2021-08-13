@@ -1,0 +1,9 @@
+GET http://localhost:3000/direccion
+###
+
+POST http://localhost:3000/direccion
+content-type: application/json
+
+{
+  "datos": 200
+}

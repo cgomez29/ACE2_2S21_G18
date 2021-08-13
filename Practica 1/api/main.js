@@ -1,11 +1,14 @@
-const express = require('express')
+import express from 'express'
+import appRouter from './routes/routes.js'
+
+import { PORT } from './constants.js'
+
 const app = express()
-const PORT = 3000
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+appRouter(app)
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`)
+const server = app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${server.address().port}`)
 })
