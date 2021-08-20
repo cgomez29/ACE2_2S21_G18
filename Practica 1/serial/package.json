@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "nodemon main.js"
+    "start": "node main.js",
+    "api": "nodemon api/main.js"
   },
   "nodemonConfig": {
     "ignore": [
@@ -15,7 +16,10 @@
   "author": "pabloc54",
   "license": "ISC",
   "dependencies": {
-    "express": "4.17.1"
+    "axios": "0.21.1",
+    "express": "4.17.1",
+    "serialport": "9.2.0",
+    "@serialport/parser-readline": "9.0.7"
   },
   "devDependencies": {
     "eslint": "7.32.0",
