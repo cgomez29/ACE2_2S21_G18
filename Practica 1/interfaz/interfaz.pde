@@ -38,16 +38,19 @@ void getValues() {
   String[] test = loadStrings("http://localhost:3000/");
   saveStrings("datosAnalizar.json", test);
   json = loadJSONObject("datosAnalizar.json");
-  
-  velocidadR = json.getInt("velocidad");
-  velocidad = velocidadR * 2;
-  println(velocidadR);
-  humedad = json.getInt("humidity");  
-  println(humedad);
-  temperatura = json.getInt("temperature");  
-  println(temperatura);
-  direccionViento = json.getInt("direction");  
-  println(direccionViento);
+  if(json.isNull("velocidad") || json.isNull("humidity") || json.isNull("temperature") || json.isNull("direction")){
+    println("No hay datos registrados");
+    velocidad = 0;
+    direccionViento = 4;
+    humedad = 0;
+    temperatura = 0;
+  } else{
+    velocidadR = json.getInt("velocidad");
+    velocidad = velocidadR * 2;
+    humedad = json.getInt("humidity");  
+    temperatura = json.getInt("temperature");  
+    direccionViento = json.getInt("direction");
+  }  
 }
 
 void renderTexts() {
