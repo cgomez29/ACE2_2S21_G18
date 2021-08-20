@@ -1,9 +1,0 @@
-GET http://localhost:3000/temperatura
-###
-
-POST http://localhost:3000/temperatura
-content-type: application/json
-
-{
-  "datos": 200
-}

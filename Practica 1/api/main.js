@@ -1,5 +1,5 @@
 import express from 'express'
-import appRouter from './routes/routes.js'
+import appRouter from './routes.js'
 
 import { PORT } from './constants.js'
 

@@ -1,0 +1,12 @@
+GET http://localhost:3000/
+###
+
+POST http://localhost:3000/
+content-type: application/json
+
+{
+  "velocidad":"3",
+  "humedad":"5",
+  "temperatura":"7",
+  "direccion":"90"
+}

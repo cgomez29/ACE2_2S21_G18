@@ -4,8 +4,12 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "dev": "nodemon main.js",
-    "start": ""
+    "start": "nodemon main.js"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "*.json"
+    ]
   },
   "keywords": [],
   "author": "pabloc54",
@@ -14,8 +18,8 @@
     "express": "4.17.1"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "nodemon": "^2.0.12"
+    "eslint": "7.32.0",
+    "nodemon": "2.0.12"
   },
   "type": "module"
 }
