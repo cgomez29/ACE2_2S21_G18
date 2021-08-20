@@ -3,7 +3,7 @@ import readLine from '@serialport/parser-readline'
 import axios from 'axios'
 
 import { PORT } from './api/constants.js'
-const URL = `https://localhost:${PORT}`
+const URL = `http://localhost:${PORT}`
 
 const serial = new serialPort('COM1', { baudRate: 9600 })
 const parser = serial.pipe(new readLine({ delimiter: '\n' }))
@@ -16,7 +16,7 @@ serial.on('open', () => {
     .then((res) => {
       console.log(res)
     })
-    .catch((error) => console.log(error))
+    .catch((error) => console.log('sin datos'))
 })
 
 serial.on('data', (data) => {
