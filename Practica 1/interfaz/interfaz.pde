@@ -35,22 +35,28 @@ void draw() {
 }
 
 void getValues() {
-  String[] test = loadStrings("http://localhost:3000/");
-  saveStrings("datosAnalizar.json", test);
-  json = loadJSONObject("datosAnalizar.json");
-  if(json.isNull("velocidad") || json.isNull("humidity") || json.isNull("temperature") || json.isNull("direction")){
-    println("No hay datos registrados");
-    velocidad = 0;
-    direccionViento = 4;
-    humedad = 0;
-    temperatura = 0;
-  } else{
-    velocidadR = json.getInt("velocidad");
-    velocidad = velocidadR * 2;
-    humedad = json.getInt("humidity");  
-    temperatura = json.getInt("temperature");  
-    direccionViento = json.getInt("direction");
-  }  
+  String[] test;
+  try{
+    test = loadStrings("http://localhost:3000/");
+    saveStrings("datosAnalizar.json", test);
+    json = loadJSONObject("datosAnalizar.json");
+    if(json.isNull("velocidad") || json.isNull("humidity") || json.isNull("temperature") || json.isNull("direction")){
+      println("No hay datos registrados");
+      velocidad = 0;
+      direccionViento = 4;
+      humedad = 0;
+      temperatura = 0;
+    } else{
+      velocidadR = json.getInt("velocidad");
+      velocidad = velocidadR * 2;
+      humedad = json.getInt("humidity");  
+      temperatura = json.getInt("temperature");  
+      direccionViento = json.getInt("direction");
+    }
+  } catch(Exception e){
+    println(e);
+  }
+    
 }
 
 void renderTexts() {
@@ -231,7 +237,7 @@ void renderViento() {
     text("Velocidad Viento: " + velocidadR + " Km/h", 10, 60);
     text("Direccion Viento: Este", 10, 80); 
     este();
-  } else if (direccionViento == 4 && velocidad == 0) {
+  } else if (direccionViento == 4) {
     fill(255, 255, 255);
     text("Velocidad Viento: " + velocidadR + " Km/h", 10, 60);
     text("Direccion Viento: Neutra", 10, 80);
@@ -244,8 +250,8 @@ void renderViento() {
 
 //0
 void norte() {
-  // GRAFICO ILUSTRADO
-  // |     *     |
+                                                                      // GRAFICO ILUSTRADO
+                                                                      // |     *     |
   for (int i = 0; i<5; i++) {                                         // |   * * *   |
     for (int j = 0; j<5; j++) {                                       // | * * * * * |
       if (i == 0 && j==2) {                                           // |   * * *   |
@@ -295,7 +301,7 @@ void norte() {
 
 //2
 void sur() {
-  // GRAFICO ILUSTRADO
+                                                  // GRAFICO ILUSTRADO
   for (int i = 0; i < 5; i++) {                   // |   * * *   |
     if (i == 2) {                                 // |   * * *   |
       for (int j = 0; j < 5; j++) {               // | * * * * * |
@@ -327,8 +333,8 @@ void sur() {
 
 //1
 void este() {
-  // GRAFICO ILUSTRADO
-  // |     *     |
+                                                            // GRAFICO ILUSTRADO
+                                                            // |     *     |
   for (int i = 0; i<5; i++) {                               // | * * * *   |
     if (i == 0 || i == 4) {                                 // | * * * * * |
       mov = int(random(4));                                 // | * * * *   |
@@ -360,8 +366,8 @@ void este() {
 
 //1
 void oeste() {
-  // GRAFICO ILUSTRADO
-  // |     *     |
+                                                            // GRAFICO ILUSTRADO
+                                                            // |     *     |
   for (int i = 0; i<5; i++) {                                // |   * * * * |
     if (i == 0) {                                            // | * * * * * |
       mov = int(random(4));                                  // |   * * * * |
