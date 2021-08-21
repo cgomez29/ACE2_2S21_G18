@@ -5,7 +5,7 @@ import axios from 'axios'
 import { PORT } from './api/constants.js'
 const URL = `http://localhost:${PORT}`
 
-const serial = new serialPort('COM1', { baudRate: 9600 })
+const serial = new serialPort('COM3', { baudRate: 9600 })
 const parser = serial.pipe(new readLine({ delimiter: '\n' }))
 
 serial.on('open', () => {
@@ -23,7 +23,7 @@ parser.on('data', (data) => {
   console.log(`se recibió ${data}`)
 
   axios
-    .post(URL, { data })
+    .post(URL, JSON.parse(data) )
     .then((res) => {
       console.log(res)
     })
