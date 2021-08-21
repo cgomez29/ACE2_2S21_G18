@@ -20,12 +20,19 @@ serial.on('open', () => {
 })
 
 parser.on('data', (data) => {
-  console.log(`se recibió ${data}`)
+  let parsed
+  try {
+    parsed = JSON.parse(data)
+  } catch {
+    return console.log('No se pudo parsear: ' + data)
+  }
+
+  console.log(`Dato recibido con éxito`)
 
   axios
-    .post(URL, JSON.parse(data) )
-    .then((res) => {
-      console.log(res)
+    .post(URL, parsed)
+    .then(({ status }) => {
+      console.log(status === 200 ? 'Dato subido con éxito' : 'Resultado: ' + status)
     })
     .catch((error) => console.log(error))
 })
