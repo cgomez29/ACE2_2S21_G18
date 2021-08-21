@@ -19,7 +19,7 @@ serial.on('open', () => {
     .catch((error) => console.log('sin datos'))
 })
 
-serial.on('data', (data) => {
+parser.on('data', (data) => {
   console.log(`se recibió ${data}`)
 
   axios
