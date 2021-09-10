@@ -9,7 +9,7 @@ const serial = new serialPort('COM3', { baudRate: 9600 })
 const parser = serial.pipe(new readLine({ delimiter: '\n' }))
 
 serial.on('open', () => {
-  console.log('opened')
+  console.log('Puerto serial abierto')
 
   axios
     .get(URL)
