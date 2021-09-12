@@ -4,7 +4,8 @@ const { Schema, model } = mongoose
 
 const RawDataSchema = new Schema({
   peso: Number,
-  proximidad: Number
+  proximidad: Number,
+  fecha: Date
 })
 
 const RawData = model('rawData', RawDataSchema)
