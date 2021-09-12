@@ -6,7 +6,7 @@ import Configure from './page/configure/Configure'
 import Report from './page/report/Report'
 import Navbar from './components/Navbar/Navbar';
 
-import 'bootswatch/dist/flatly/bootstrap.min.css'
+import 'bootswatch/dist/sandstone/bootstrap.min.css'
 
 function App() {
   return (
