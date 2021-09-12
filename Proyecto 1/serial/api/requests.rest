@@ -2,7 +2,15 @@ POST http://localhost:3000/
 content-type: application/json
 
 {
-  "peso": 56,
+  "peso": 56
+}
+
+###
+
+POST http://localhost:3000/
+content-type: application/json
+
+{
   "proximidad": 14
 }
 
@@ -16,4 +24,4 @@ GET http://localhost:3000/analyzed
 
 ###
 
-GET http://localhost:3000/analyzed/11-06-2021
+GET http://localhost:3000/analyzed/09-12-2021

@@ -10,8 +10,9 @@ La API recibe datos para almacenarla en la base de datos, datos que sirve en cru
 Mediante un POST se almacenan los datos en la base de datos, con el siguiente formato:
 ```js
 {
-  "peso": ..., // kg
-  "proximidad": ... // cm
+  "peso": ..., // kg        (opcional)
+  "proximidad": ..., // cm, (opcional)
+  "fecha": ...
 }
 ```
 
@@ -55,8 +56,8 @@ Mediante un GET se obtienen los tiempos de uso totales por semana, con el siguie
 }
 ```
 
-### /analyzed/{dia}
-Mediante un GET se obtienen los horarios de uso de un día especifico, con el siguiente formato:
+### /analyzed/{fecha}
+Mediante un GET se obtienen los horarios de uso de una fecha específica (mm-dd-yyyy), con el siguiente formato:
 ```js
 {
   "data": [

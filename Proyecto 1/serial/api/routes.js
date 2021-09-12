@@ -1,12 +1,18 @@
 import RawData from './models/RawData.js'
 import AnalyzedData from './models/AnalyzedData.js'
-import { horarioUso } from './helpers/horarioUso.js'
+import getHorarioUso from './helpers/getHorarioUso.js'
+import getTiempoTotal from './helpers/getTiempoTotal.js'
+import getTiempoPromedio from './helpers/getTiempoPromedio.js'
+import getLevantadasPromedio from './helpers/getLevantadasPromedio.js'
+import getPeso from './helpers/getPeso.js'
+import getUso from './helpers/getUso.js'
 
 const appRouter = (app) => {
   app.post('/', (request, response) => {
-    const {peso, proximidad} = request.body
+    const data = request.body
     const fecha = new Date()
-    const rawData = new RawData({ peso, proximidad, fecha})
+    const rawData = new RawData({ ...data, fecha })
+
     rawData
       .save()
       .then(() => {
@@ -24,24 +30,42 @@ const appRouter = (app) => {
   })
 
   app.get('/analyzed', (request, response) => {
-    response.send('ok')
+    RawData.find({}).then((rawData) => {
+      const analyzedDate = new AnalyzedData({
+        tiempo_total: getTiempoTotal(rawData),
+        tiempo_promedio: getTiempoPromedio(rawData),
+        levantadas_promedio: getLevantadasPromedio(rawData),
+        peso: getPeso(rawData),
+        uso: getUso(rawData)
+      })
+
+      response.send(analyzedDate)
+    })
   })
 
   app.get('/analyzed/uso', (request, response) => {
     response.send('ok')
   })
 
-  app.get('/analyzed/:dia', (request, response) => {
-    const dia = request.params.dia
-    const dateI = new Date(dia+', 00:00:00')
-    const dateF = new Date(dia+', 23:59:59')
-    const rawDate = RawData.find({ "$and" : [{"fecha" : {"$gte" : dateI}}, {"fecha" : {"$lte" : dateF}}] })
-    .then(result => {
-      response.send(horarioUso(result))
+  app.get('/analyzed/:day', (request, response) => {
+    let dateStart, dateEnd
+    try {
+      const day = request.params.day
+      dateStart = new Date(day + ', 00:00:00')
+      dateEnd = new Date(day + ', 23:59:59')
+    } catch {
+      return console.log('Error en el formato de la fecha')
+    }
+
+    RawData.find({
+      $and: [{ fecha: { $gte: dateStart } }, { fecha: { $lte: dateEnd } }]
     })
-    .catch((error) => {
-      response.status(400).send(error)
-    })
+      .then((result) => {
+        response.send(getHorarioUso(result))
+      })
+      .catch((error) => {
+        response.status(400).send(error)
+      })
   })
 }
 
