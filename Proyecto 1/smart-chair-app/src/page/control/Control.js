@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const Control = () => {
-    return (
-        <div>
-            Control
-        </div>
-    )
-}
+    return <div className="animate__animated animate__fadeIn">Control</div>;
+};
 
-export default Control
+export default Control;

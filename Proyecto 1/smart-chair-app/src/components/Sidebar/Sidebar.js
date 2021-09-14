@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-
+import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import './sidebar.css';
 const Sidebar = () => {
     return (
         <>
@@ -9,7 +9,9 @@ const Sidebar = () => {
                 <div className="sidebar-header">
                     <h3 className="brand">
                         <span>
-                            <Link className="navbar-brand" to="/">SMART CHAIR</Link>
+                            <Link className="navbar-brand" to="/">
+                                SMART CHAIR
+                            </Link>
                         </span>
                     </h3>
                     <label for="sidebar-toggle" className="ti-menu-alt"></label>
@@ -18,34 +20,62 @@ const Sidebar = () => {
                 <div className="sidebar-menu">
                     <ul>
                         <li>
-                            <a href="">
+                            <a>
                                 <span className="ti-home"></span>
-                                <span>                      
-                                    <Link className="nav-link" to="/">Dashboard</Link>
+                                <span>
+                                    <NavLink
+                                        activeClassName="active"
+                                        className="nav-link"
+                                        exact
+                                        to="/"
+                                    >
+                                        Dashboard
+                                    </NavLink>
                                 </span>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a>
                                 <span className="ti-settings"></span>
                                 <span>
-                                    <Link className="nav-link" to="/configure">Settings</Link>
+                                    <NavLink
+                                        activeClassName="active"
+                                        className="nav-link"
+                                        exact
+                                        to="/configure"
+                                    >
+                                        Settings
+                                    </NavLink>
                                 </span>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a>
                                 <span className="ti-check-box"></span>
                                 <span>
-                                    <Link className="nav-link" to="/control">Control</Link>
+                                    <NavLink
+                                        activeClassName="active"
+                                        className="nav-link"
+                                        exact
+                                        to="/control"
+                                    >
+                                        Control
+                                    </NavLink>
                                 </span>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a>
                                 <span className="ti-write"></span>
                                 <span>
-                                    <Link className="nav-link" to="/report">Report</Link>
+                                    <NavLink
+                                        activeClassName="active"
+                                        className="nav-link"
+                                        exact
+                                        to="/report"
+                                    >
+                                        Report
+                                    </NavLink>
                                 </span>
                             </a>
                         </li>
@@ -53,7 +83,7 @@ const Sidebar = () => {
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Sidebar
+export default Sidebar;

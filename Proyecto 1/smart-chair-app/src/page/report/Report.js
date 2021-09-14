@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const Report = () => {
-    return (
-        <div>
-            Report
-        </div>
-    )
-}
+    return <div className="animate__animated animate__fadeIn">Report</div>;
+};
 
-export default Report
+export default Report;
