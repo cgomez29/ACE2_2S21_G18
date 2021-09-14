@@ -1,38 +1,113 @@
-.App {
-  text-align: center;
+:root {
+  --main-color: #027581;
+  --text-dark: #1D2231;
+  --text-grey: #8390A2;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style-type: none;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.sidebar {
+  height: 100%;
+  width: 240px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  background: var(--main-color);
+  color: #fff;
+  padding: 1rem;
+  overflow: auto;
+  transition: width 500ms;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.sidebar-header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  height: 60px;
+  padding: 0rem 1rem;
+}
+
+.sidebar-menu {
+  padding: 1rem;
+}
+
+.sidebar li {
+  margin-bottom: 1.2rem;
+}
+
+.sidebar a {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.sidebar a span:last-child {
+  padding-left: .6rem;
+}
+
+#sidebar-toggle {
+  display: none;
+}
+
+#sidebar-toggle:checked ~ .sidebar {
+  width: 60px;
+}
+
+#sidebar-toggle:checked ~ .sidebar .sidebar-header h3 span,
+#sidebar-toggle:checked ~ .sidebar li span:last-child {
+  display: none;
+}
+
+#sidebar-toggle:checked ~ .sidebar .sidebar-header,
+#sidebar-toggle:checked ~ .sidebar li {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#sidebar-toggle:checked ~ .main-content {
+  margin-left: 80px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#sidebar-toggle:checked ~ .main-content header {
+  left: 80px;
+  width: calc(100% - 80px);
 }
+
+.main-content {
+  position: relative; 
+  margin-left: 260px;
+  margin-right: 20px;
+  transition: margin-left 500ms;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: calc(100%-240px);
+  width: 100%;
+  height: 60px;
+  padding: 0rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  left: 240px;
+  border-bottom: 1px solid var(--text-dark);
+}
+
+main {
+  margin-top: 60px;
+  background: #f1f5f9;
+  min-height: 90vh;
+  padding: 1rem 3rem;
+}
+
+
+/*mini¡ 37:23*/
