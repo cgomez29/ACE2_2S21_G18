@@ -31,9 +31,11 @@ const appRouter = (app) => {
 
   app.get('/analyzed', (request, response) => {
     RawData.find({}).then((rawData) => {
+      const tiempo_total = getTiempoTotal(rawData)
+
       const analyzedDate = new AnalyzedData({
-        tiempo_total: getTiempoTotal(rawData),
-        tiempo_promedio: getTiempoPromedio(rawData),
+        tiempo_total,
+        tiempo_promedio: getTiempoPromedio(rawData, tiempo_total),
         levantadas_promedio: getLevantadasPromedio(rawData),
         peso: getPeso(rawData),
         uso: getUso(rawData)
