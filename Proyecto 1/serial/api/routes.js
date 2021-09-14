@@ -6,6 +6,7 @@ import getTiempoPromedio from './helpers/getTiempoPromedio.js'
 import getLevantadasPromedio from './helpers/getLevantadasPromedio.js'
 import getPeso from './helpers/getPeso.js'
 import getUso from './helpers/getUso.js'
+import getUsoSemana from './helpers/getUsoSemana.js'
 
 const appRouter = (app) => {
   app.post('/', (request, response) => {
@@ -46,7 +47,12 @@ const appRouter = (app) => {
   })
 
   app.get('/analyzed/uso', (request, response) => {
-    response.send('ok')
+    RawData.find({}).then((result) => {
+      const uso = {
+        "data": getUsoSemana(result)
+      }
+      response.send(uso)
+    })
   })
 
   app.get('/analyzed/:day', (request, response) => {
@@ -63,7 +69,10 @@ const appRouter = (app) => {
       $and: [{ fecha: { $gte: dateStart } }, { fecha: { $lte: dateEnd } }]
     })
       .then((result) => {
-        response.send(getHorarioUso(result))
+        const jsonResult = {
+          data : getHorarioUso(result)
+        }
+        response.send(jsonResult)
       })
       .catch((error) => {
         response.status(400).send(error)

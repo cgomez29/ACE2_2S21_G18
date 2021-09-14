@@ -3,23 +3,22 @@ export default function getHorarioUso(datos) {
   var pJson
   var inicio
   var final
-  var peso = 0
+  var distancia = -1
   datos.forEach((valor) => {
-    if (peso == 0 && peso != valor.peso) {
-      peso = valor.peso
-      inicio = valor.fecha.toLocaleTimeString()
-    } else if (peso > 0 && valor.peso == 0) {
-      peso = 0
-      final = valor.fecha.toLocaleTimeString()
-      pJson = {
-        inicio: inicio,
-        fin: final
+    if (valor.proximidad != undefined) {
+      if (distancia == -1 && distancia != valor.proximidad) {
+        distancia = valor.proximidad
+        inicio = valor.fecha
+      } else if (distancia >= 0 && valor.proximidad == -1) {
+        distancia = -1
+        final = valor.fecha
+        pJson = {
+          inicio: inicio.toLocaleTimeString(),
+          fin: final.toLocaleTimeString()
+        }
+        regreso.push(pJson)
       }
-      regreso.push(pJson)
     }
   })
-  pJson = {
-    data: regreso
-  }
-  return pJson
+  return regreso
 }
