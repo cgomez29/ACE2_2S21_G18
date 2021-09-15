@@ -43,12 +43,16 @@
     margin-bottom: 1.2rem;
 }
 
-.sidebar a {
+.nav-link-span {
+    padding-left: 0.5rem;
+}
+
+.sidebar-a {
     color: #fff;
     font-size: 1rem;
 }
 
-.sidebar a span:last-child {
+.sidebar-a span:last-child {
     padding-left: 0.6rem;
 }
 

@@ -9,7 +9,7 @@ const Sidebar = () => {
                 <div className="sidebar-header">
                     <h3 className="brand">
                         <span>
-                            <Link className="navbar-brand" to="/">
+                            <Link className="sidebar-a" to="/">
                                 SMART CHAIR
                             </Link>
                         </span>
@@ -20,64 +20,56 @@ const Sidebar = () => {
                 <div className="sidebar-menu">
                     <ul>
                         <li>
-                            <a>
-                                <span className="ti-home"></span>
-                                <span>
-                                    <NavLink
-                                        activeClassName="active"
-                                        className="nav-link"
-                                        exact
-                                        to="/"
-                                    >
-                                        Dashboard
-                                    </NavLink>
-                                </span>
-                            </a>
+                            <span className="ti-home"></span>
+                            <span>
+                                <NavLink
+                                    activeClassName="active"
+                                    className="sidebar-a nav-link-span"
+                                    exact
+                                    to="/"
+                                >
+                                    Dashboard
+                                </NavLink>
+                            </span>
                         </li>
                         <li>
-                            <a>
-                                <span className="ti-settings"></span>
-                                <span>
-                                    <NavLink
-                                        activeClassName="active"
-                                        className="nav-link"
-                                        exact
-                                        to="/configure"
-                                    >
-                                        Settings
-                                    </NavLink>
-                                </span>
-                            </a>
+                            <span className="ti-settings"></span>
+                            <span>
+                                <NavLink
+                                    activeClassName="active"
+                                    className="sidebar-a nav-link-span"
+                                    exact
+                                    to="/configure"
+                                >
+                                    Settings
+                                </NavLink>
+                            </span>
                         </li>
                         <li>
-                            <a>
-                                <span className="ti-check-box"></span>
-                                <span>
-                                    <NavLink
-                                        activeClassName="active"
-                                        className="nav-link"
-                                        exact
-                                        to="/control"
-                                    >
-                                        Control
-                                    </NavLink>
-                                </span>
-                            </a>
+                            <span className="ti-check-box"></span>
+                            <span>
+                                <NavLink
+                                    activeClassName="active"
+                                    className="sidebar-a nav-link-span"
+                                    exact
+                                    to="/control"
+                                >
+                                    Control
+                                </NavLink>
+                            </span>
                         </li>
                         <li>
-                            <a>
-                                <span className="ti-write"></span>
-                                <span>
-                                    <NavLink
-                                        activeClassName="active"
-                                        className="nav-link"
-                                        exact
-                                        to="/report"
-                                    >
-                                        Report
-                                    </NavLink>
-                                </span>
-                            </a>
+                            <span className="ti-write"></span>
+                            <span>
+                                <NavLink
+                                    activeClassName="active"
+                                    className="sidebar-a nav-link-span"
+                                    exact
+                                    to="/report"
+                                >
+                                    Report
+                                </NavLink>
+                            </span>
                         </li>
                     </ul>
                 </div>
