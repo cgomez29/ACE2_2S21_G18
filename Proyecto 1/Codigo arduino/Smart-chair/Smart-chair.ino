@@ -1,7 +1,7 @@
 #include "HX711.h"
 #define DEBUG_HX711
 //Variables para la bascula
-#define CALIBRACION 20550.0
+#define CALIBRACION 21720.0
 byte pinData = 3;   //Data en pin 3
 byte pinClk = 2;    //Clock en pin 2
 float valores = 0, var = 0; int repeticiones = 0;
@@ -40,11 +40,6 @@ void loop(){
   if(result<=0){
     Serial.println(peso());
   }
-  var = bascula.get_units();
-  if(var>=0.5 ){
-    valores+=var;
-    repeticiones+=1;
-  }
 }
 
 String distance(){
@@ -81,14 +76,12 @@ String distance(){
 }
 
 String peso(){
-  if(repeticiones == 0){
-    valores = 0; repeticiones = 0;
+  var = bascula.get_units();
+  if(var <= 0.5){
     Tbas=millis()+600000;
     return "{\"peso\":-1}";
   }else{
-    float pesoFinal = valores/repeticiones;
-    valores = 0; repeticiones = 0;
     Tbas=millis()+600000;
-    return "{\"peso\":"+String(pesoFinal)+"}";
+    return "{\"peso\":"+String(var)+"}";
   }
 }
