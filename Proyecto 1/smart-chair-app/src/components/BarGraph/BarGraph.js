@@ -1,9 +1,17 @@
-import React from 'react'
+import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
-const BarGraph = ({title, value}) => {
+const BarGraph = ({ title, value }) => {
     const data = {
-        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday',],
+        labels: [
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday',
+            'Sunday',
+        ],
         datasets: [
             {
                 label: '# of Votes',
@@ -51,13 +59,9 @@ const BarGraph = ({title, value}) => {
         maintainAspectRatio: false,
     };
 
-
     return (
         <>
-            <Bar 
-                data={data} 
-                options={options}
-            />
+            <Bar data={data} options={options} />
         </>
     );
 };

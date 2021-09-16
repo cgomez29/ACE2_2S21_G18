@@ -18,10 +18,10 @@ export const getAnalyzedUso = async () => {
     });
 };
 
-// export const setAnalyzedDate = (date) => {
-//     return await axios.get(`${API}/analyzed/${date}`, {
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//     });
-// };
+export const setAnalyzedDate = async (date) => {
+    return await axios.get(`${API}/analyzed/${date}`, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+};

@@ -2,7 +2,7 @@ import React from 'react';
 import BarGraph from '../../components/BarGraph/BarGraph';
 import LineGraph from '../../components/LineGraph/LineGraph';
 
-import './report.css';
+import './Report.css';
 
 const Report = () => {
     const data = [5, 1, 6, 8, 1, 7, 8];
