@@ -7,6 +7,7 @@ import getLevantadasPromedio from './helpers/getLevantadasPromedio.js'
 import getPeso from './helpers/getPeso.js'
 import getUso from './helpers/getUso.js'
 import getUsoSemana from './helpers/getUsoSemana.js'
+import getPesoActual from './helpers/getPesoActual.js'
 
 const appRouter = (app) => {
   app.post('/', (request, response) => {
@@ -43,6 +44,22 @@ const appRouter = (app) => {
       })
 
       response.send(analyzedDate)
+    })
+  })
+
+  app.get('/pesoActual', (request, response) => {
+    const todayDate = new Date()
+    const dateStart = new Date(todayDate.toDateString())
+    const dateEnd = new Date(todayDate.toDateString() + ', 23:59:59')
+    RawData.find({
+      $and: [{ fecha: { $gte: dateStart } }, { fecha: { $lte: dateEnd } }]
+    })
+    .then((result) => {
+      const peso = getPesoActual(result)
+      response.send(peso)
+    })
+    .catch((error) => {
+      response.status(400).send(error)
     })
   })
 
