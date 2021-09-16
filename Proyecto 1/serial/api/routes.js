@@ -1,5 +1,4 @@
 import RawData from './models/RawData.js'
-import AnalyzedData from './models/AnalyzedData.js'
 import getHorarioUso from './helpers/getHorarioUso.js'
 import getTiempoTotal from './helpers/getTiempoTotal.js'
 import getTiempoPromedio from './helpers/getTiempoPromedio.js'
@@ -21,27 +20,30 @@ const appRouter = (app) => {
         response.status(200).send()
       })
       .catch((error) => {
-        response.status(400).send(error)
+        response.status(500).send(error)
       })
   })
 
   app.get('/', (request, response) => {
-    RawData.find({}).then((result) => {
-      response.send(result)
-    })
+    RawData.find({})
+      .sort({ fecha: -1 })
+      .limit(100)
+      .then((result) => {
+        response.send(result)
+      })
   })
 
   app.get('/analyzed', (request, response) => {
     RawData.find({}).then((rawData) => {
       const tiempo_total = getTiempoTotal(rawData)
 
-      const analyzedDate = new AnalyzedData({
+      const analyzedDate = {
         tiempo_total,
         tiempo_promedio: getTiempoPromedio(rawData, tiempo_total),
         levantadas_promedio: getLevantadasPromedio(rawData),
         peso: getPeso(rawData),
         uso: getUso(rawData)
-      })
+      }
 
       response.send(analyzedDate)
     })
@@ -54,19 +56,19 @@ const appRouter = (app) => {
     RawData.find({
       $and: [{ fecha: { $gte: dateStart } }, { fecha: { $lte: dateEnd } }]
     })
-    .then((result) => {
-      const peso = getPesoActual(result)
-      response.send(peso)
-    })
-    .catch((error) => {
-      response.status(400).send(error)
-    })
+      .then((result) => {
+        const peso = getPesoActual(result)
+        response.send(peso)
+      })
+      .catch((error) => {
+        response.status(400).send(error)
+      })
   })
 
   app.get('/analyzed/uso', (request, response) => {
     RawData.find({}).then((result) => {
       const uso = {
-        "data": getUsoSemana(result)
+        data: getUsoSemana(result)
       }
       response.send(uso)
     })
@@ -87,7 +89,7 @@ const appRouter = (app) => {
     })
       .then((result) => {
         const jsonResult = {
-          data : getHorarioUso(result)
+          data: getHorarioUso(result)
         }
         response.send(jsonResult)
       })

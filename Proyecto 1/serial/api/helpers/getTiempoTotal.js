@@ -1,12 +1,7 @@
 export default function getTiempoTotal(rawData) {
-  const summary = rawData.reduce(
-    ({ total, previousDate }, data) => {
-      if (data.proximidad === -1) return { total, previousDate: data.fecha }
+  const filteredData = rawData.filter(({ proximidad }) => {
+    return proximidad !== undefined && proximidad !== -1
+  })
 
-      const time = (data.fecha.getTime() - previousDate.getTime()) / (1000 * 3600)
-      return { total: total + time, previousDate: data.fecha }
-    },
-    { total: 0, previousDate: rawData[0].fecha }
-  )
-  return summary.total
+  return filteredData.length * (10 / 3600)
 }

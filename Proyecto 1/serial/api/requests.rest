@@ -6,7 +6,6 @@ content-type: application/json
 }
 
 ###
-
 POST http://localhost:3000/
 content-type: application/json
 
@@ -15,13 +14,16 @@ content-type: application/json
 }
 
 ###
-
 GET http://localhost:3000/
 
 ###
-
 GET http://localhost:3000/analyzed
 
 ###
+GET http://localhost:3000/pesoActual
 
+###
+GET http://localhost:3000/analyzed/uso
+
+###
 GET http://localhost:3000/analyzed/09-12-2021
