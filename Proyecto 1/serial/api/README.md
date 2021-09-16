@@ -42,6 +42,16 @@ Mediante un GET se obtienen los datos analizados, con el siguiente formato:
 }
 ```
 
+### /pesoActual
+Mediante un GET se obtiene el peso actual de la persona y el tiempo de uso, con el siguiente formato:
+```js
+{
+  "peso": ..., // kg
+  "inicio": ..., // hh:mm:ss
+  "tiempo": ... // hh:mm:ss
+}
+```
+
 ### /analyzed/uso
 Mediante un GET se obtienen los tiempos de uso totales por semana, con el siguiente formato:
 ```js
