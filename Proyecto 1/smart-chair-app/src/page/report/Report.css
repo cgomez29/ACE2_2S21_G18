@@ -1,4 +1,4 @@
-.content {
+.content-graph {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -8,5 +8,5 @@
 .graph {
     max-width: 500px;
     width: 100%;
-    height: 350px;   
+    height: 350px;
 }

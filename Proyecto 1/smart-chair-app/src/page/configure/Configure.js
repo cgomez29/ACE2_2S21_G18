@@ -1,6 +1,7 @@
 import Typical from 'react-typical';
 import { FaChair, FaRegUser, FaMapMarkerAlt } from 'react-icons/fa';
 import './configure.css';
+
 const Configure = () => {
     return (
         <div className="animate__animated animate__fadeIn">
@@ -37,7 +38,9 @@ const Configure = () => {
                             <FaChair />
                         </div>
                         <div className="card-chair-body">
-                            <h3>a12352dd98</h3>
+                            <h3>
+                                Chair: <b>1</b>
+                            </h3>
                         </div>
                     </div>
                     <div className="card-chair">
@@ -46,7 +49,7 @@ const Configure = () => {
                             <FaRegUser />
                         </div>
                         <div className="card-chair-body">
-                            <h3>David</h3>
+                            <h3>David Zea</h3>
                         </div>
                     </div>
                     <div className="card-chair last-c">
@@ -55,7 +58,7 @@ const Configure = () => {
                             <FaMapMarkerAlt />
                         </div>
                         <div className="card-chair-body">
-                            <h3>Nueva York, EE.UU</h3>
+                            <h3>Cuarto de David, Mi Casa</h3>
                         </div>
                     </div>
                 </div>
