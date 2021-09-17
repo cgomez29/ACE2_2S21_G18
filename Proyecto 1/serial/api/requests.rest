@@ -20,7 +20,10 @@ GET http://localhost:3000/
 GET http://localhost:3000/analyzed
 
 ###
-GET http://localhost:3000/pesoActual
+GET http://localhost:3000/analyzed/avg
+
+###
+GET http://localhost:3000/analyzed/actual
 
 ###
 GET http://localhost:3000/analyzed/uso

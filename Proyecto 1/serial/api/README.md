@@ -42,7 +42,21 @@ Mediante un GET se obtienen los datos analizados, con el siguiente formato:
 }
 ```
 
-### /pesoActual
+### /analyzed/avg
+Mediante un GET se obtiene el promedio de uso de la silla por día de la semana, con el siguiente formato:
+```js
+{
+  "data": [
+    {
+      "dia": "lunes",
+      "uso": ... // h
+    },
+    ...
+  ]
+}
+```
+
+### /analyzed/actual
 Mediante un GET se obtiene el peso actual de la persona y el tiempo de uso, con el siguiente formato:
 ```js
 {
