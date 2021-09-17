@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import BarGraph from "../../BarGraph/BarGraph";
-import { getAnalyzed } from "../../../helpers/servicesAPI";
+import { getAVG } from "../../../helpers/servicesAPI";
 import "../graphGeneral.css";
 import moment from "moment";
 
@@ -9,15 +9,18 @@ export const MenorUso = () => {
   const [label, setLabel] = useState("");
   useEffect(() => {
     async function fetch() {
-      const data = await getAnalyzed();
+      const data = await getAVG();
+
+      console.log(data)
+
       let array = [];
-      data.data.uso.forEach(({ fecha, uso }) => {
+      data.data.data.forEach(({ dia, uso }) => {
         array.push(uso);
       });
 
       let arrayLabel = [];
-      data.data.uso.forEach(({ fecha, uso }) => {
-        arrayLabel.push(moment(fecha).format("DD/MM/YYYY"));
+      data.data.data.forEach(({ dia, uso }) => {
+        arrayLabel.push(dia);
       });
 
       setData(array);

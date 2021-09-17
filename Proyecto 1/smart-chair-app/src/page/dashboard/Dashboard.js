@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
 import "./Dashboard.css";
-import { getAnalyzed, getTimpoReal } from "../../helpers/servicesAPI";
+import { getAnalyzed, getRealTime, getData } from "../../helpers/servicesAPI";
 import { PieMayorUso } from "../../components/Graph/PieMayorUso/PieMayorUso";
 import moment from "moment";
 import { LineGraph } from "../../components/LineGraph/LineGraph";
+import { CountUpTimer } from "../../components/CountUpTimer/CountUpTimer";
 
 const Dashboard = () => {
   const [data, setData] = useState("");
   const [data3, setData3] = useState(""); //Tiempo real
   const [lineData, setLineData] = useState("");
   const [lineLabel, setLineLabel] = useState("");
+  const [stop, setStop] = useState(false);
+  const [hoursMinSecs, setHoursMinSecs] = useState({
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   useEffect(() => {
-    async function fetch() {
-      const data = await getAnalyzed();
-      setData(data.data);
-    }
-    fetch();
-
     async function fetch2() {
       const data = await getAnalyzed();
-
+      setData(data.data);
       let array = [];
       data.data.peso.forEach(({ fecha, peso }) => {
         array.push(peso);
@@ -38,18 +39,30 @@ const Dashboard = () => {
     fetch2();
 
     async function fetch3() {
-      const data = await getTimpoReal();
+      const data = await getRealTime();
       setData3(data.data);
+      let time = data.data.tiempo.split(":");
+      setHoursMinSecs({
+        hours: parseInt(time[0]),
+        minutes: parseInt(time[1]),
+        seconds: parseInt(time[2]),
+      });
     }
+
+    reload();
     fetch3();
   }, []);
 
   const reload = () => {
-    async function fetch3() {
-      const data = await getTimpoReal();
-      setData3(data.data);
+    async function fetch() {
+      const data = await getData();
+      if (String(data.data[0].proximidad) === "-1") {
+        setStop(false);
+      } else {
+        setStop(true);
+      }
     }
-    fetch3();
+    fetch();
   };
 
   return (
@@ -74,14 +87,17 @@ const Dashboard = () => {
 
         <Card title={"En linea desde: "} value={data3.inicio} />
         <button onClick={reload} className="reload-button">
-          <Card title={"Tiempo en linea"} value={data3.tiempo} />
+          <Card
+            title={"Tiempo en linea"}
+            value={<CountUpTimer hoursMinSecs={hoursMinSecs} stop={stop} />}
+          />
         </button>
         <div className="graph-graph">
           <PieMayorUso />
         </div>
         <div className="graph-graph">
           <LineGraph
-            title={"Tendencia del peso"}
+            title={"Tendencia del peso kg/dia"}
             value={lineData}
             labels={lineLabel}
           />

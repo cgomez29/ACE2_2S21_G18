@@ -53,9 +53,21 @@ export const PieMayorUso = () => {
     ],
   };
 
+  const options = {
+    responsive: true,
+    plugins: {
+      
+      title: {
+        display: true,
+        text: "Dis de mayor uso",
+      },
+    },
+    maintainAspectRatio: false,
+  };
+
   return (
     <>
-      <Pie data={data} />
+      <Pie data={data} options={options}/>
     </>
   );
 };

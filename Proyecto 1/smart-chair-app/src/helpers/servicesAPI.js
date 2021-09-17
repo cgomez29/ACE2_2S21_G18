@@ -12,13 +12,23 @@ export const getData = async () => {
 
 
 //Uso en tiempo real
-export const getTimpoReal = async () => {
-    return await axios.get(`${API}/pesoActual`, {
+export const getRealTime = async () => {
+    return await axios.get(`${API}/analyzed/actual`, {
         headers: {
             'Content-Type': 'application/json',
         },
     });
 };
+
+//Días de menor uso y de no uso
+export const getAVG = async () => {
+    return await axios.get(`${API}/analyzed/avg`, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+};
+
 
 
 export const getAnalyzed = async () => {
