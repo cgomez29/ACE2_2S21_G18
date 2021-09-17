@@ -8,3 +8,11 @@
     color: var(--color-dark);
     margin-bottom: 1rem;
 }
+
+.reload-button {
+    margin: 0px;
+    padding: 0px;
+    outline: none;
+    border: 1px solid white;
+    background: white;
+}
