@@ -10,7 +10,6 @@ export const getData = async () => {
     });
 };
 
-
 //Uso en tiempo real
 export const getRealTime = async () => {
     return await axios.get(`${API}/analyzed/actual`, {
@@ -28,8 +27,6 @@ export const getAVG = async () => {
         },
     });
 };
-
-
 
 export const getAnalyzed = async () => {
     return await axios.get(`${API}/analyzed/`, {

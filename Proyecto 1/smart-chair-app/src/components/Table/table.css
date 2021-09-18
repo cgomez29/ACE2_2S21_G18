@@ -36,6 +36,6 @@
 }
 
 .content-table tbody tr:hover {
-    font-weight: 520;
+    /* font-weight: 520; */
     color: #027581;
 }

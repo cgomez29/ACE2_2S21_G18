@@ -1,0 +1,45 @@
+:root {
+    --primario: #027581;
+    --gris-claro: #b8b8b8;
+    --sombra: 0 0 13px 0 rgba(185, 185, 185, 0.15);
+    --sombraCard: 0 0 13px 0 rgba(185, 185, 185, 0.45);
+}
+.peso-flex {
+    display: grid;
+    padding: 10px;
+    margin-top: 100px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+.peso-card {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background: 20px;
+    font-weight: 700;
+    color: var(--gris-claro);
+    border: 2px solid transparent;
+    transition: 0.3s ease all;
+    box-shadow: var(--sombra);
+}
+.peso-card:hover {
+    box-shadow: var(--sombraCard);
+    border: 2px solid var(--primario);
+    color: black;
+}
+
+.peso-card path {
+    fill: var(--gris-claro);
+    transition: 0.3s all all;
+}
+.peso-card:hover path {
+    fill: var(--primario);
+}
+.peso-card svg {
+    margin-top: 20px;
+}
+
+.grafica-peso {
+    margin-left: 100px;
+    width: 200px;
+}

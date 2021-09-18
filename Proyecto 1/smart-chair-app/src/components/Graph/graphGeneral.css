@@ -3,3 +3,16 @@
     width: 75%;
     height: 500px;
 }
+
+.contenedor-graph-2 {
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.graph-graph-2 {
+    width: 300px;
+}
+.line-graph {
+    margin-top: 110px;
+    width: 550px;
+}

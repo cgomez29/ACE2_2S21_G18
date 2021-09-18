@@ -1,3 +1,5 @@
+import { getData, setAnalyzedDate } from '../../helpers/servicesAPI';
+import moment from 'moment';
 export const headers = [
     {
         headerName: 'No',
@@ -25,3 +27,21 @@ export const bodyContent = [
         fecha: '2021-09-13T20:02:08.243Z',
     },
 ];
+export const getDataCrud = async () => {
+    const res = await getData();
+    const dataCrudList = res.data.map((data) => ({
+        ...data,
+        fecha: moment(data.fecha).format('DD/MM/YYYY, h:mm a').toString(),
+        peso: data.peso !== undefined ? `${data.peso} kg` : '-',
+    }));
+    return dataCrudList;
+};
+
+export const getDataByDate = async (date) => {
+    const res = await setAnalyzedDate(date);
+    return res.data.data;
+};
+
+export const formatearFecha = (date) => {
+    return moment(date).format('LL').toString();
+};
