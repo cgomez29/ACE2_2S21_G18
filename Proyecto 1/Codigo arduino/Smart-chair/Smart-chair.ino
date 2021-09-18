@@ -43,30 +43,20 @@ void loop(){
 }
 
 String distance(){
-  float d1, d2, d3;
+  float d1;
   digitalWrite(TRIG, HIGH);     // generacion del pulso a enviar
   delay(1);                     // al pin conectado al trigger
   digitalWrite(TRIG, LOW);      // del sensor
   DURACION = pulseIn(ECO, HIGH);// con funcion pulseIn se espera un pulso alto
   d1 = DURACION / 58.2;         // distancia medida en centimetros
-  digitalWrite(TRIG, HIGH);
-  delay(1);
-  digitalWrite(TRIG, LOW);
-  DURACION = pulseIn(ECO, HIGH);
-  d2 = DURACION / 58.2;
-  digitalWrite(TRIG, HIGH);
-  delay(1);
-  digitalWrite(TRIG, LOW);
-  DURACION = pulseIn(ECO, HIGH);
-  d3 = DURACION / 58.2;
-  DISTANCIA = (d1+d2+d3)/3;
+  DISTANCIA = d1;
   String resultado = "";
-  if(DISTANCIA > 30 && DISTANCIA< 50){
-    resultado = "{\"proximidad\":"+String(actualDistancia)+"}";
-  }else if(DISTANCIA>=50 ){
+  resultado = "{\"proximidad\":"+String(DISTANCIA)+"}";
+  if(DISTANCIA>=50 ){
     resultado = "{\"proximidad\":-1}";
   }else if(DISTANCIA <= 0){
-    resultado = "{\"proximidad\":"+String(actualDistancia)+"}";
+    /*resultado = "{\"proximidad\":"+String(DISTANCIA)+"}";*/
+    resultado = "{\"proximidad\":-1}";
   }else{
     resultado = "{\"proximidad\":"+String(DISTANCIA)+"}";
     actualDistancia = DISTANCIA;
