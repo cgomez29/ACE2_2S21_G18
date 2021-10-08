@@ -50,11 +50,11 @@ export const Navbar = () => {
                 <>
                     {active ? (
                         <div className="description">
-                            <p>Prox</p>
-                            <i className="fas fa-sun"></i>
+                            <p>Predic</p>
+                            <i className="fas fa-cloud-rain"></i>
                         </div>
                     ) : (
-                        <i className="fas fa-sun"></i>
+                        <i className="fas fa-cloud-rain"></i>
                     )}
                 </>
             </div>
