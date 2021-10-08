@@ -12,7 +12,6 @@ export const WeatherApp = () => {
                     <Redirect to="/" />
                 </Switch>
             </div>
-            <Dashboard />
         </BrowserRouter>
     );
 };
