@@ -1,0 +1,32 @@
+.weather-content {
+    align-items: center;    
+    display: flex;
+}
+
+.list-weather  {
+    margin: 2rem;
+}
+
+.temperatura {
+    font-size: 1000%;
+}
+
+ul li {
+    align-items: center;
+    background-color: gray;
+    color: white;
+    display: flex;
+    margin: 0rem;
+    padding: 0.5rem;
+    transition: 0.5s;
+}
+
+ul li:hover {
+    background: #363636;
+    transform: scale(1.1);
+}
+
+.list-p {
+    margin-left: 0.3rem;
+}
+

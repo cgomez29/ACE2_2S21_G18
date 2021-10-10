@@ -1,0 +1,48 @@
+.f-cards {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.f-cards .f-card {
+    background: gray;
+    border-radius: 20px;
+    margin: 0.1rem;
+    padding: 1rem;
+    overflow: hidden;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+}
+
+.f-cards .f-card .f-circle { 
+    border-radius: 1rem;
+    background: #363636;
+    clip-path: circle(360px at center 0);
+    height: 100%;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+.f-cards .f-card .f-circle h2 { 
+    color: white;
+    font-size: 2.5em;
+    padding: 20px 0;
+
+}
+
+.f-cards .f-card:hover {
+    background: #363636;
+    transform: scale(1.1);
+    color: white;
+}
+
+/* .f-cards .f-card .f-circle {
+    position: absolute;
+    bottom: 10px;
+    page-break-after: 20px;
+    text-align: center;
+} */
