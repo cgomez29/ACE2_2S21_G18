@@ -1,5 +1,6 @@
 import RawData from './models/RawData.js'
 import AnalyzedData from './models/AnalyzedData.js'
+import getStatus from './helpers/getStatus.js'
 
 const appRouter = (app) => {
   app.post('/', (request, response) => {
@@ -29,47 +30,20 @@ const appRouter = (app) => {
           humedad: 0.5,
           temperatura: 0.5,
           direccion: 0.5,
-          luz: 0.5,
-          status: [
-            {
-              fecha: new Date(),
-              velocidad: 'normal',
-              visibilidad: 'despejado',
-              lluvia: false,
-              calor: false
-            },
-            {
-              fecha: new Date(),
-              velocidad: 'normal',
-              visibilidad: 'despejado',
-              lluvia: false,
-              calor: false
-            },
-            {
-              fecha: new Date(),
-              velocidad: 'normal',
-              visibilidad: 'despejado',
-              lluvia: false,
-              calor: false
-            },
-            {
-              fecha: new Date(),
-              velocidad: 'normal',
-              visibilidad: 'despejado',
-              lluvia: false,
-              calor: false
-            },
-            {
-              fecha: new Date(),
-              velocidad: 'normal',
-              visibilidad: 'despejado',
-              lluvia: false,
-              calor: false
-            }
-          ]
+          luz: 0.5
         })
         response.send(analyzedData)
       })
+  })
+
+  app.get('/getStatus', (request, response) => {
+    RawData.find({})
+    .then((result) => {
+      const jsonR = {
+        status: getStatus(result)
+      }
+      response.send(jsonR)
+    })
   })
 }
 

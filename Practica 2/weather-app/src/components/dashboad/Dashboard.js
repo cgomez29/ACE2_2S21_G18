@@ -1,7 +1,23 @@
+import { useWeather } from "../../hooks/useWeather";
+import { Forecast } from "../forecast/Forecast";
+import { Loading } from "../loading/Loading";
+import { Weather } from "../weather/Weather";
+
+import "./dashboard.css";
+
 export const Dashboard = () => {
-    return (
-        <div>
-            <h1>Dashboard</h1>
-        </div>
-    );
+  const { data, loading } = useWeather();
+
+  return (
+    <div className="content">
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <Weather data={data} />
+          <Forecast data={data} />
+        </>
+      )}
+    </div>
+  );
 };
