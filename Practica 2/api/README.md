@@ -38,3 +38,20 @@ Se recibe el estado del clima, obtenido de los datos analizados, con el siguient
   ]
 }
 ```
+
+### GET /getStatus
+Se recibe un pronostico del clima para los siguientes 5 dias con el siguiente formato:
+```js
+{
+  "status": [                 // 5 datos
+    {
+      "fecha": Date,
+      "velocidad": String,    // normal  | alto
+      "visibilidad": String,  // nublado | despejado
+      "lluvia": Boolean,
+      "Calor": Boolean
+    },
+    ...
+  ]
+}
+```
