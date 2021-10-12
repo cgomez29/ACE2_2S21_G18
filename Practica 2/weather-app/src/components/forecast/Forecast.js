@@ -1,28 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { getStatus } from '../../helpers/helper';
 
-import './forecast.css'
+import './forecast.css';
 
-export const Forecast = ({data}) => {
-    
-    const {status} = data;
-    
+export const Forecast = () => {
+    const [data, setData] = useState([]);
+
+    const loadData = async () => {
+        const list = await getStatus();
+        setData(list);
+    };
+
+    useEffect(() => {
+        loadData();
+    }, []);
+
     return (
-        <div className='f-cards'>
-            {
-                status.map(({velocidad, visibilidad, despejado, lluvia, calor}) => (
-                    <div className='f-card'>
-                        <div className='f-circle'> 
-                            <h2>dia</h2>
-                        </div>
-                        <div className='f-body-card'>
-                            <p>{ velocidad }</p> 
-                            <p>{ visibilidad }</p> 
-                            <p>{ despejado }</p> 
+        <div className="f-cards">
+            {data.map(({ dia, visibilidad, lluvia, icono }, index) => (
+                <div className="f-card" key={index}>
+                    <div className="f-circle">
+                        <div className="f-content-title">
+                            <h2>{dia}</h2>
+                            <i className={`icono ${icono}`}></i>
                         </div>
                     </div>
-                ))
-            }
-        
+                    <div className="f-body-card">
+                        <p>Visibilidad: {visibilidad}</p>
+                        {lluvia && <p>con posibilidad de lluvia</p>}
+                    </div>
+                </div>
+            ))}
         </div>
-    )
-}
+    );
+};
