@@ -13,6 +13,20 @@ import "./weather.css";
 export const Weather = ({ data }) => {
   const { direccion, humedad, luz, temperatura, velocidad } = data;
 
+  
+  let dir = "";
+  //Norte:0, Oeste:1, Sur:2, Este:3
+  console.log(direccion)
+  if(direccion === 0){
+    dir = "Norte"
+  } else if(direccion === 1){
+    dir = "Oeste"
+  } else if(direccion === 2){
+    dir = "Sur"
+  } else if(direccion === 3){
+    dir = "Este"
+  }
+
   return (
     <div className="weather-content">
       <div>
@@ -31,11 +45,11 @@ export const Weather = ({ data }) => {
           </li>
           <li>
             <MdOutlineFlag />
-            <p className="list-p">{`${direccion} ?`}</p>
+            <p className="list-p">{`${dir}`}</p>
           </li>
           <li>
             <BsSun />
-            <p className="list-p">{`${luz} ?`}</p>
+            <p className="list-p">{`${luz} lux`}</p>
           </li>
         </ul>
       </div>

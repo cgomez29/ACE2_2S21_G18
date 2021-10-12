@@ -1,4 +1,5 @@
 import { weatherApi } from '../api/weatherApi';
+
 export const getWeather = async () => {
     return await weatherApi.get('/');
 };
@@ -20,7 +21,7 @@ export const getStatus = async () => {
 
 const fix_date = (date) => {
     const listDate = date.split('/');
-    const dateFix = `${listDate[1]}/${listDate[0]}/${listDate[2]}`;
+    const dateFix = `${listDate[0]}/${listDate[1]}/${listDate[2]}`;
     const date2 = new Date(dateFix);
     return getDayWeek(date2.getDay().toString());
 };

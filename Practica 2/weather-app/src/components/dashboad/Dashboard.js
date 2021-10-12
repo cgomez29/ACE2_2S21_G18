@@ -12,10 +12,10 @@ export const Dashboard = () => {
             {loading ? (
                 <Loading />
             ) : (
-                <>
+                <div className='dashboard-content'>
                     <Weather data={data} />
                     <Forecast />
-                </>
+                </div>
             )}
         </div>
     );
