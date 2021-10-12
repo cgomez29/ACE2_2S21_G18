@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js",
+    "start": "node serial.js",
+    "api": "node main.js",
     "dev": "nodemon main.js"
   },
   "nodemonConfig": {
@@ -20,7 +21,9 @@
     "cors": "2.8.5",
     "express": "4.17.1",
     "mongoose": "6.0.5",
-    "morgan": "1.10.0"
+    "morgan": "1.10.0",
+    "serialport": "9.2.0",
+    "@serialport/parser-readline": "9.0.7"
   },
   "devDependencies": {
     "eslint": "7.32.0",
