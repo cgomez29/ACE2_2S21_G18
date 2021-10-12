@@ -18,24 +18,14 @@ Se reciben los datos para ser almacenados en la base de datos, con el siguiente 
 ```
 
 ### GET /
-Se recibe el estado del clima, obtenido de los datos analizados, con el siguiente formato:
+Se recibe el estado actual del clima, con el siguiente formato:
 ```js
 {
   "velocidad": Number,
   "humedad": Number,
   "temperatura": Number,
   "direccion": Number,
-  "luz": Number,
-  "status": [                 // 5 datos
-    {
-      "fecha": Date,
-      "velocidad": String,    // normal  | alto
-      "visibilidad": String,  // nublado | despejado
-      "lluvia": Boolean,
-      "Calor": Boolean
-    },
-    ...
-  ]
+  "luz": Number
 }
 ```
 
