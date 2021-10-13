@@ -253,19 +253,19 @@ function setValuesJson(velPromD, tempProD, humPromD, luzPromD) {
   var lluvia;
   var calor;
   // VELOCIDAD DEL VIENTO
-  if (velPromD >= 0 && velPromD <= 25) {
+  if (velPromD <= 25) {
     velocidad = "normal";
-  } else if (velPromD > 25) {
+  } else{
     velocidad = "alto"
   }
   // CALOR
-  if (tempProD >= 0 && tempProD <= 25) {
+  if (tempProD <= 25) {
     calor = false
-  } else if (tempProD > 25) {
+  } else{
     calor = true
   }
   // LLUVIA
-  if (humPromD >= 0 && humPromD <= 60) {
+  if (humPromD <= 85) {
     lluvia = false
   } else {
     lluvia = true
