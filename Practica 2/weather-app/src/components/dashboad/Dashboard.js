@@ -13,7 +13,7 @@ export const Dashboard = () => {
                 <Loading />
             ) : (
                 <div className='dashboard-content'>
-                    <Weather data={data} />
+                    <Weather data={data[0]} />
                     <Forecast />
                 </div>
             )}
