@@ -13,7 +13,7 @@ export const Navbar = () => {
                 {active ? (
                     <div className="description">
                         <p>Weather</p>
-                        <i className="fas fa-temperature-low"></i>
+                        {/* <i className="fas fa-temperature-low"></i> */}
                     </div>
                 ) : (
                     <i className="fas fa-bars mr-1"></i>
