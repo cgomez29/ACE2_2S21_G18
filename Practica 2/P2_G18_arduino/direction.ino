@@ -6,7 +6,7 @@ int sensorMinNorte = 1023;
 int sensorMinOeste = 1023;
 int sensorMinSur = 1023;
 int sensorMinEste = 1023;
-String direccionActual = "\"direction\":0";
+String direccionActual = "\"direccion\":0";
 
 void calibrarFotoresistencias(){
   int valueNorte = 0, valueOeste = 0, valueSur = 0, valueEste = 0;
@@ -31,7 +31,7 @@ void calibrarFotoresistencias(){
 }
 
 String getDirection(){
-  String dir = "\"direction\":";
+  String dir = "\"direccion\":";
   int valorNorte = analogRead(sensorNorte);
   int valorOeste = analogRead(sensorOeste);
   int valorSur = analogRead(sensorSur);

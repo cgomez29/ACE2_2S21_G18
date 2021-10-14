@@ -8,15 +8,15 @@ export const useWeather = () => {
   });
 
   useEffect(() => {
-    getWeather().then((res) => {
-      setTimeout(() => {
+    setTimeout(() => {
+      getWeather().then((res) => {
         setState({
           data: res.data,
           loading: false,
         });
-      }, 1000)
+      });
+    }, 4000)
     });
-  }, []);
 
   return state;
 };

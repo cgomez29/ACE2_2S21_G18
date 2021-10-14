@@ -6,7 +6,9 @@ import { Weather } from '../weather/Weather';
 import './dashboard.css';
 
 export const Dashboard = () => {
+    
     const { data, loading } = useWeather();
+
     return (
         <div className="content">
             {loading ? (
