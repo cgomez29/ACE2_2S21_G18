@@ -265,7 +265,7 @@ function setValuesJson(velPromD, tempProD, humPromD, luzPromD) {
     calor = true
   }
   // LLUVIA
-  if (humPromD <= 85) {
+  if (humPromD < 90) {
     lluvia = false
   } else {
     lluvia = true
