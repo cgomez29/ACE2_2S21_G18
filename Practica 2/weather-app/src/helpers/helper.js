@@ -12,7 +12,7 @@ export const getStatus = async () => {
         return {
             ...data,
             dia: fix_date(data.fecha),
-            icono: getIcon(data.visibilidad, data.lluvia),
+            icono: getIcon(data.visibilidad, data.lluvia, data.calor),
         };
     });
 
@@ -54,9 +54,9 @@ const getDayWeek = (number) => {
 
 */
 const getIcon = (status, lluvia, soleado) => {
-    if (lluvia && soleado) {
+    if (lluvia === true && soleado === true) {
         return 'fas fa-cloud-sun-rain';
-    } else if (lluvia) {
+    } else if (lluvia === true) {
         return 'fas fa-cloud-showers-heavy';
     } else {
         if (status.toLowerCase() === 'nublado') {
