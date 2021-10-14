@@ -46,13 +46,22 @@ const getDayWeek = (number) => {
             return '';
     }
 };
+/*
+    calor despejado -> far fa-sun
+    calor nublado -> fas fa-cloud-sun
+    lluvia -> fas fa-cloud-showers-heavy
+    lluvia y sol -> fas fa-cloud-sun-rain
 
-const getIcon = (status, lluvia) => {
-    if (lluvia) {
-        return 'fas fa-cloud-rain';
-    } else if (status === 'nublado') {
-        return 'fas fa-cloud';
+*/
+const getIcon = (status, lluvia, soleado) => {
+    if (lluvia && soleado) {
+        return 'fas fa-cloud-sun-rain';
+    } else if (lluvia) {
+        return 'fas fa-cloud-showers-heavy';
     } else {
-        return 'fas fa-sun';
+        if (status.toLowerCase() === 'nublado') {
+            return 'fas fa-cloud-sun';
+        }
+        return 'far fa-sun';
     }
 };
