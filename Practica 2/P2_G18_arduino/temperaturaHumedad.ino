@@ -4,8 +4,8 @@ dht DHT;
 
 String getTemperatureHumidity()
 {
-    String temperature = "\"temperature\":";
-    String humidity = "\"humidity\":";
+    String temperature = "\"temperatura\":";
+    String humidity = "\"humedad\":";
 
     // Lee la informacion que envia el sensor
     DHT.read11(DHT11_PIN);
