@@ -24,7 +24,7 @@ parser.on('data', (data) => {
   try {
     parsed = JSON.parse(data)
   } catch {
-    return console.log('No se pudo parsear: ' + data)
+    return console.log(`No se pudo parsear: ${data}`)
   }
 
   console.log(`Dato recibido con éxito`)
@@ -32,7 +32,7 @@ parser.on('data', (data) => {
   axios
     .post(URL, parsed)
     .then(({ status }) => {
-      console.log(status === 200 ? 'Dato subido con éxito' : 'Resultado: ' + status)
+      console.log(status === 200 ? 'Dato subido con éxito' : `Resultado: ${status}`)
     })
     .catch((error) => console.log(error))
 })

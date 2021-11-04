@@ -62,7 +62,7 @@ const appRouter = (app) => {
   app.get('/analyzed/actual', (request, response) => {
     const todayDate = new Date()
     const dateStart = new Date(todayDate.toDateString())
-    const dateEnd = new Date(todayDate.toDateString() + ', 23:59:59')
+    const dateEnd = new Date(`${todayDate.toDateString()}, 23:59:59`)
     RawData.find({
       $and: [{ fecha: { $gte: dateStart } }, { fecha: { $lte: dateEnd } }]
     })
@@ -85,11 +85,12 @@ const appRouter = (app) => {
   })
 
   app.get('/analyzed/:day', (request, response) => {
-    let dateStart, dateEnd
+    let dateStart
+    let dateEnd
     try {
       const day = request.params.day
-      dateStart = new Date(day + ', 00:00:00')
-      dateEnd = new Date(day + ', 23:59:59')
+      dateStart = new Date(`${day}, 00:00:00`)
+      dateEnd = new Date(`${day}, 23:59:59`)
     } catch {
       return console.log('Error en el formato de la fecha')
     }
