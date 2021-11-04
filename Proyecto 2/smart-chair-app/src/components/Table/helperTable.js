@@ -39,9 +39,25 @@ export const getDataCrud = async () => {
 
 export const getDataByDate = async (date) => {
     const res = await setAnalyzedDate(date);
-    return res.data.data;
+    const { data } = res.data;
+    let horaTotal = 0;
+
+    data.forEach((data) => {
+        horaTotal += getTotalTime(data.inicio, data.fin);
+    });
+    return {
+        listByDate: data,
+        horaTotal: horaTotal.toFixed(1),
+    };
 };
 
 export const formatearFecha = (date) => {
     return moment(date).format('LL').toString();
+};
+const getTotalTime = (inicio, fin) => {
+    const initHour = moment.duration(inicio, 'hh:mm:ss');
+    const endHour = moment.duration(fin, 'hh:mm:ss');
+
+    const total = endHour.subtract(initHour);
+    return Number.parseFloat(total.asHours().toString());
 };

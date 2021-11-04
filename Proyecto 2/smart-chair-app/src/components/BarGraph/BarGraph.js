@@ -1,12 +1,21 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
 
-const BarGraph = ({ title, value, labels }) => {
+const BarGraph = ({ title, value, labels, media = 0 }) => {
   const data = {
     labels: labels,
     datasets: [
       {
-        label: "# of Votes",
+        type: 'line',
+        label: media === 0 ? '' : `Media: ${media}h`,
+        borderColor: 'rgb(54, 162, 235)',
+        borderWidth: 2,
+        fill: false,
+        data: media === 0 ? [] : [media, media, media, media, media, media, media],
+      },
+      {
+        type: 'bar',
+        label: '',
         data: value,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",

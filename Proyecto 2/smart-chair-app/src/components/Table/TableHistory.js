@@ -4,10 +4,18 @@ import { getDataByDate, formatearFecha } from './helperTable';
 
 export const TableHistory = () => {
     const { dateHistory } = useParams();
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({
+        listByDate: [],
+        horaTotal: 0,
+    });
+    const { listByDate, horaTotal } = data;
     const loadData = async () => {
         const newDate = await getDataByDate(dateHistory);
-        setData(newDate);
+        setData({
+            ...data,
+            listByDate: newDate.listByDate,
+            horaTotal: newDate.horaTotal,
+        });
     };
     const dateFormat = useMemo(
         () => formatearFecha(dateHistory),
@@ -21,6 +29,7 @@ export const TableHistory = () => {
             <h2>
                 Historial de <b>{dateFormat}</b>
             </h2>
+            <p>Horas aproximadas {horaTotal} h</p>
             <div>
                 <table className="content-table">
                     <thead>
@@ -32,7 +41,7 @@ export const TableHistory = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((data, index) => (
+                        {listByDate.map((data, index) => (
                             <tr key={index}>
                                 <th>{index + 1}</th>
                                 <th>{dateHistory}</th>

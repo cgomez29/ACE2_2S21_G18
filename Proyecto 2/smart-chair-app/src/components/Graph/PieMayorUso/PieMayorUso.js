@@ -59,7 +59,7 @@ export const PieMayorUso = () => {
       
       title: {
         display: true,
-        text: "Dis de mayor uso",
+        text: "Dias de mayor uso",
       },
     },
     maintainAspectRatio: false,
