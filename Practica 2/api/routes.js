@@ -21,18 +21,9 @@ const appRouter = (app) => {
   app.get('/', (request, response) => {
     RawData.find({})
       .sort({ fecha: -1 })
-      .limit(100)
+      .limit(1)
       .then((result) => {
-        console.log(result)
-
-        const analyzedData = new AnalyzedData({
-          velocidad: 0.5,
-          humedad: 0.5,
-          temperatura: 0.5,
-          direccion: 0.5,
-          luz: 0.5
-        })
-        response.send(analyzedData)
+        response.send(result)
       })
   })
 

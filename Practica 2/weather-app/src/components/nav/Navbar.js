@@ -5,9 +5,6 @@ export const Navbar = () => {
     const [active, setActive] = useState(false);
     const handleClick = () => {
         setActive(!active);
-        // <i className="fas fa-temperature-low"></i>
-        //                     <span>Weather App</span>
-        //                     <i className="fas fa-bars mr-1"></i>
     };
 
     return (
@@ -16,7 +13,7 @@ export const Navbar = () => {
                 {active ? (
                     <div className="description">
                         <p>Weather</p>
-                        <i className="fas fa-temperature-low"></i>
+                        {/* <i className="fas fa-temperature-low"></i> */}
                     </div>
                 ) : (
                     <i className="fas fa-bars mr-1"></i>
