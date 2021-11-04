@@ -1,0 +1,45 @@
+:root {
+    --primario: #027581;
+    --gris-claro: #b8b8b8;
+    --sombra: 0 0 13px 0 rgba(185, 185, 185, 0.15);
+    --sombraCard: 0 0 13px 0 rgba(185, 185, 185, 0.45);
+}
+h2 {
+    color: var(--gris-claro);
+}
+.content-graph {
+    display: grid;
+    margin-top: 50px;
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px;
+}
+.card-graph {
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background: 20px;
+    font-weight: 700;
+    color: var(--gris-claro);
+    border: 2px solid transparent;
+    transition: 0.3s ease all;
+    box-shadow: var(--sombra);
+}
+.card-graph path {
+    fill: var(--gris-claro);
+    transition: 0.3s all all;
+}
+.card-graph:hover {
+    box-shadow: var(--sombraCard);
+    border: 2px solid var(--primario);
+    color: black;
+}
+
+.card-graph:hover path {
+    fill: var(--primario);
+}
+.card-graph svg {
+    width: 64px;
+    margin-bottom: 10px;
+}

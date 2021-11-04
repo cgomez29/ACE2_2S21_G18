@@ -1,0 +1,32 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start-serial": "node main.js",
+    "start-api": "node api/main.js",
+    "dev-api": "nodemon api/main.js"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "*.json"
+    ]
+  },
+  "keywords": [],
+  "author": "pabloc54",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "0.21.1",
+    "cors": "2.8.5",
+    "express": "4.17.1",
+    "mongoose": "6.0.5",
+    "serialport": "9.2.0",
+    "@serialport/parser-readline": "9.0.7"
+  },
+  "devDependencies": {
+    "eslint": "7.32.0",
+    "nodemon": "2.0.12"
+  },
+  "type": "module"
+}
