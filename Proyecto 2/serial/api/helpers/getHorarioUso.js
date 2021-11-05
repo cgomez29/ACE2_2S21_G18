@@ -13,6 +13,11 @@ export default function getHorarioUso(datos) {
       } else if (distancia >= 0 && valor.proximidad == -1) {
         distancia = -1
         final = valor.fecha
+        if (inicio > final){
+          let aux = inicio
+          inicio = final
+          final = aux
+        }
         totalT += final - inicio
         pJson = {
           inicio: inicio.toLocaleTimeString(),
