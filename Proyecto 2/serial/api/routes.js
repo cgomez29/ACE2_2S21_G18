@@ -101,9 +101,10 @@ const appRouter = (app) => {
       $and: [{ fecha: { $gte: dateStart } }, { fecha: { $lte: dateEnd } }]
     })
       .then((result) => {
+        const resultH = getHorarioUso(result);
         const jsonResult = {
-          tiempo_total: 0.5,
-          horarios: getHorarioUso(result)
+          tiempo_total: resultH[0],
+          horarios: resultH[1] 
         }
         response.send(jsonResult)
       })
