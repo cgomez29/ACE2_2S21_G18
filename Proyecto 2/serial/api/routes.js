@@ -41,6 +41,7 @@ const appRouter = (app) => {
       const analyzedDate = {
         tiempo_total,
         tiempo_promedio: getTiempoPromedio(rawData, tiempo_total),
+        uso_promedio: 0.5,
         levantadas_promedio: getLevantadasPromedio(rawData),
         peso: getPeso(rawData),
         uso: getUso(rawData)
@@ -52,10 +53,11 @@ const appRouter = (app) => {
 
   app.get('/analyzed/avg', (request, response) => {
     RawData.find({}).then((result) => {
-      const uso = {
-        data: getTiempoPromedioDia(result)
+      const data = {
+        tiempo_promedio: 0.5,
+        semana: getTiempoPromedioDia(result)
       }
-      response.send(uso)
+      response.send(data)
     })
   })
 
@@ -100,7 +102,8 @@ const appRouter = (app) => {
     })
       .then((result) => {
         const jsonResult = {
-          data: getHorarioUso(result)
+          tiempo_total: 0.5,
+          horarios: getHorarioUso(result)
         }
         response.send(jsonResult)
       })

@@ -26,6 +26,7 @@ export default function getTiempoPromedioDia(rawData) {
     const averageUsage = totalUsage / days
 
     data.push({
+      fecha: firstDate,
       dia: dayOfWeek[i],
       uso: averageUsage
     })

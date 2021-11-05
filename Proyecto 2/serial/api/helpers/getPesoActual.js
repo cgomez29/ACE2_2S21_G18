@@ -1,7 +1,7 @@
 export default function getPesoActual(data){
-    var peso = 0
-    var hora = '00:00:00'
-    var tiempo = 0
+    let peso = 0;
+    let hora = '00:00:00';
+    let tiempo = 0;
 
     data.forEach(dato => {
         if (dato.peso != undefined){
@@ -56,10 +56,10 @@ export default function getPesoActual(data){
 }
 
 function convertTime(tiempo){
-    var horas = '00'
-    var minutos = '00'
-    var segundos = '00'
-    var punto = tiempo.toString().indexOf('.')
+    let horas = '00';
+    let minutos = '00';
+    let segundos = '00';
+    const punto = tiempo.toString().indexOf('.');
     if (tiempo >= 60){
         horas = Number(tiempo.toString().substring(0,punto)) / 60
         if (horas < 10){
