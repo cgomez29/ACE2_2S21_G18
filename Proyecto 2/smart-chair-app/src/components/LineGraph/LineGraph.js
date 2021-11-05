@@ -18,15 +18,20 @@ export const LineGraph = ({ title, value, labels }) => {
 
   const options = {
     scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
-        },
-      ],
-    },
-  };
+      yAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: 'probability'
+        }
+      }],
+      xAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: 'hola'
+        }
+      }],
+    }
+  }
 
   return (
     <>

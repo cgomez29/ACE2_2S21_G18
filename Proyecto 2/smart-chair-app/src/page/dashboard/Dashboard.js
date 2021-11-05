@@ -60,7 +60,7 @@ const Dashboard = () => {
     <div className="animate__animated animate__fadeIn">
       <h2 class="dash-title">WELCOME</h2>
       <div className="dash-cards">
-        <Card title={"ID silla"} value={"Chair: 1"} />
+        <Card title={"ID"} value={"User: David Zea Chair: \n 1 Lugar: \n Cuarto de David, Mi Casa"} />
         <Card
           title={"Horas de uso"}
           icon={"ti-alarm-clock"}
