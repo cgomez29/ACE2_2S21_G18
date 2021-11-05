@@ -1,15 +1,16 @@
 export default function getTiempoPromedioDia(rawData) {
   const data = []
 
-  for (let i = 0; i < 7; i++) {
-    const filteredData = rawData.filter(({ fecha, proximidad }) => {
-      return proximidad !== undefined && proximidad !== -1 && fecha.getDay() === i
-    })
+  for (let i = 0; i <= 6; i++) {
+    const filteredData = rawData.filter(
+      ({ fecha, proximidad }) =>
+        proximidad !== undefined && proximidad !== -1 && fecha.getDay() === i
+    )
 
     if (filteredData.length === 0) {
       data.push({
         dia: dayOfWeek[i],
-        uso: 0
+        tiempo_promedio: 0
       })
       continue
     }
@@ -26,9 +27,8 @@ export default function getTiempoPromedioDia(rawData) {
     const averageUsage = totalUsage / days
 
     data.push({
-      fecha: firstDate,
       dia: dayOfWeek[i],
-      uso: averageUsage
+      tiempo_promedio: averageUsage
     })
   }
 
