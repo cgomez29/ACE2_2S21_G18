@@ -8,6 +8,7 @@ import getUso from './helpers/getUso.js'
 import getUsoSemana from './helpers/getUsoSemana.js'
 import getPesoActual from './helpers/getPesoActual.js'
 import getTiempoPromedioDia from './helpers/getTiempoPromedioDia.js'
+import getTiempoUltimosDias from './helpers/getTiempoUltimosDias.js'
 
 const appRouter = (app) => {
   app.post('/', (request, response) => {
@@ -52,11 +53,19 @@ const appRouter = (app) => {
   })
 
   app.get('/analyzed/avg', (request, response) => {
-    RawData.find({}).then((result) => {
+    RawData.find({}).then((rawData) => {
+      const tiempo_total = getTiempoTotal(rawData)
       const data = {
-        tiempo_promedio: 0.5,
-        semana: getTiempoPromedioDia(result)
+        tiempo_promedio: getTiempoPromedio(rawData, tiempo_total),
+        semana: getTiempoPromedioDia(rawData)
       }
+      response.send(data)
+    })
+  })
+
+  app.get('/analyzed/back', (request, response) => {
+    RawData.find({}).then((rawData) => {
+      const data = getTiempoUltimosDias(rawData)
       response.send(data)
     })
   })

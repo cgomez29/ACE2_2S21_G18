@@ -23,6 +23,9 @@ GET http://localhost:3000/analyzed
 GET http://localhost:3000/analyzed/avg
 
 ###
+GET http://localhost:3000/analyzed/back
+
+###
 GET http://localhost:3000/analyzed/actual
 
 ###

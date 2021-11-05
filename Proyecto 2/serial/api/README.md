@@ -49,9 +49,22 @@ Mediante un GET se obtiene el promedio de uso de la silla por día de la semana,
   "tiempo_promedio": Number,
   "semana": [
     {
-      "fecha": Date,
       "dia": "lunes",
-      "uso": Number // h
+      "tiempo_promedio": Number // h
+    }
+  ]
+}
+```
+
+### /analyzed/back
+Mediante un GET se obtiene el uso total de la silla de los ultimos siete días con el siguiente formato:
+```js
+{
+  "tiempo_total": Number,
+  "dias": [
+    {
+      "fecha": Date,
+      "tiempo_total": Number // h
     }
   ]
 }
