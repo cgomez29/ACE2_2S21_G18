@@ -5,6 +5,7 @@ const { Schema, model } = mongoose
 const RawDataSchema = new Schema({
   peso: Number,
   proximidad: Number,
+  luz: Number,
   fecha: Date
 })
 

@@ -29,4 +29,4 @@ GET http://localhost:3000/analyzed/actual
 GET http://localhost:3000/analyzed/uso
 
 ###
-GET http://localhost:3000/analyzed/09-12-2021
+GET http://localhost:3000/analyzed/09-14-2021

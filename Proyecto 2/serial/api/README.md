@@ -10,34 +10,34 @@ La API recibe datos para almacenarla en la base de datos, datos que sirve en cru
 Mediante un POST se almacenan los datos en la base de datos, con el siguiente formato:
 ```js
 {
-  "peso": ..., // kg        (opcional)
-  "proximidad": ..., // cm, (opcional)
-  "fecha": ...
+  "peso": Number, // kg (opcional)
+  "proximidad": Number, // cm (opcional)
+  "luz": Number, // lm (opcional)
+  "fecha": Date
 }
 ```
 
-Mediante un GET se obtienen los últimos datos crudos almacenados en la base de datos, con el formato anterior descrito.
+Mediante un GET se obtienen los últimos 100 datos crudos almacenados en la base de datos, con el formato anterior descrito.
 
 ### /analyzed/
 Mediante un GET se obtienen los datos analizados, con el siguiente formato:
 ```js
 {
-  "tiempo_total": ..., // h
-  "tiempo_promedio": ..., // h/d
-  "levantadas_promedio" ...,
+  "tiempo_total": Number, // h
+  "tiempo_promedio": Number, // h/d
+  "uso_promedio": Number,
+  "levantadas_promedio" Number,
   "peso": [
     {
-    "fecha": ...,
-    "peso": ... // kg
-    },
-    ...
+    "fecha": Date,
+    "peso": Number // kg
+    }
   ],
   "uso": [
     {
-    "fecha": ...,
-    "uso": ... // kg
-    },
-    ...
+    "fecha": Date,
+    "uso": Number // h
+    }
   ]
 }
 ```
@@ -46,12 +46,13 @@ Mediante un GET se obtienen los datos analizados, con el siguiente formato:
 Mediante un GET se obtiene el promedio de uso de la silla por día de la semana, con el siguiente formato:
 ```js
 {
-  "data": [
+  "tiempo_promedio": Number,
+  "semana": [
     {
+      "fecha": Date,
       "dia": "lunes",
-      "uso": ... // h
-    },
-    ...
+      "uso": Number // h
+    }
   ]
 }
 ```
@@ -60,9 +61,9 @@ Mediante un GET se obtiene el promedio de uso de la silla por día de la semana,
 Mediante un GET se obtiene el peso actual de la persona y el tiempo de uso, con el siguiente formato:
 ```js
 {
-  "peso": ..., // kg
-  "inicio": ..., // hh:mm:ss
-  "tiempo": ... // hh:mm:ss
+  "peso": Number, // kg
+  "inicio": Date,
+  "tiempo": Number // h
 }
 ```
 
@@ -72,10 +73,9 @@ Mediante un GET se obtienen los tiempos de uso totales por semana, con el siguie
 {
   "data": [
     {
-      "semana": ...,
-      "total": ... // h
-    },
-    ...
+      "semana": Number,
+      "total": Number // h
+    }
   ]
 }
 ```
@@ -84,12 +84,12 @@ Mediante un GET se obtienen los tiempos de uso totales por semana, con el siguie
 Mediante un GET se obtienen los horarios de uso de una fecha específica (mm-dd-yyyy), con el siguiente formato:
 ```js
 {
-  "data": [
+  "tiempo_total": Number, // h
+  "horarios": [
     {
-      "inicio": ...,
-      "fin": ...
-    },
-    ...
+      "inicio": Date,
+      "fin": Date
+    }
   ]
 }
 ```
