@@ -2,15 +2,15 @@ export default function getUso(data) {
     const firstDate = data[0].fecha
     const lastDate = data[data.length - 1].fecha
 
-    var firstDayWeek = setTimeI(firstDate)
-    var lastDayWeek = setTimeF(firstDate)
+    let firstDayWeek = setTimeI(firstDate)
+    let lastDayWeek = setTimeF(firstDate)
 
-    var inicio
-    var final
-    var distancia = -1
-    var timeWeek = 0
-    var contWeek = 1
-    var dataReturn = []
+    let inicio
+    let final
+    let distancia = -1
+    let timeWeek = 0
+    let contWeek = 1
+    let dataReturn = []
 
     data.forEach(datos => {
         if (datos.fecha >= firstDayWeek && datos.fecha <= lastDayWeek) {
@@ -51,7 +51,7 @@ export default function getUso(data) {
 }
 
 function setTimeI(date) {
-    var firstDayWeek = new Date(date)
+    let firstDayWeek = new Date(date)
     firstDayWeek.setHours(0)
     firstDayWeek.setMinutes(0)
     firstDayWeek.setSeconds(0)
@@ -59,7 +59,7 @@ function setTimeI(date) {
 }
 
 function setTimeF(date) {
-    var lastDayWeek = new Date(date)
+    let lastDayWeek = new Date(date)
     lastDayWeek.setDate(lastDayWeek.getDate() + 7)
     lastDayWeek.setHours(23)
     lastDayWeek.setMinutes(59)
