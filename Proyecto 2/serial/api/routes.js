@@ -92,6 +92,31 @@ const appRouter = (app) => {
     })
   })
 
+  app.get('/analyzed/exceed', (request, response) => {
+    RawData.find({})
+      .then((rawData) => {
+        const [, horarios] = getHorarioUso(rawData)
+        // @ts-ignore
+        const data = horarios
+          .map(({ inicio, fin }) => {
+            const tiempo_total = (fin.getTime() - inicio.getTime()) / (1000 * 60 * 60)
+            return {
+              inicio,
+              fin,
+              tiempo_total,
+              tiempo_excedido: tiempo_total - 0.5
+            }
+          })
+          .filter(({ tiempo_excedido }) => tiempo_excedido > 0)
+
+        response.send(data)
+      })
+      .catch((error) => {
+        console.log(error)
+        response.status(400).send(error)
+      })
+  })
+
   app.get('/analyzed/:day', (request, response) => {
     let dateStart
     let dateEnd
@@ -110,7 +135,10 @@ const appRouter = (app) => {
         const resultH = getHorarioUso(result)
         const jsonResult = {
           tiempo_total: resultH[0],
-          horarios: resultH[1]
+          horarios: resultH[1].map(({ inicio, fin }) => ({
+            inicio: inicio.toLocaleTimeString(),
+            fin: fin.toLocaleTimeString()
+          }))
         }
         response.send(jsonResult)
       })

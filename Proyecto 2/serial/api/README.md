@@ -71,10 +71,11 @@ Mediante un GET se obtiene el uso total de la silla de los ultimos siete días c
 ```
 
 ### /analyzed/actual
-Mediante un GET se obtiene el peso actual de la persona y el tiempo de uso, con el siguiente formato:
+Mediante un GET se obtiene el peso actual de la persona, la iluminación del ambiente y el tiempo de uso, con el siguiente formato:
 ```js
 {
   "peso": Number, // kg
+  "luz": Number, // lm
   "inicio": Date,
   "tiempo": Number // h
 }
@@ -102,6 +103,22 @@ Mediante un GET se obtienen los horarios de uso de una fecha específica (mm-dd-
     {
       "inicio": Date,
       "fin": Date
+    }
+  ]
+}
+```
+
+### /analyzed/exceed
+Mediante un GET se obtienen todos los intervalos de uso continuo de la silla que exceeden el uso recomendado de 30 minutos seguidos, con el siguiente formato:
+```js
+{
+  "horarios": [
+    {
+      "inicio": Date,
+      "fin": Date,
+      "tiempo_total": Number // h,
+      "tiempo_excedido": Number // h
+
     }
   ]
 }
