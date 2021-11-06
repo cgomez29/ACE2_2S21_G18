@@ -51,3 +51,11 @@ export const setAnalyzedDate = async (date) => {
         },
     });
 };
+
+export const getHorarioUsoAPI = async () => {
+    return await axios.get(`${API}/analyzed/back`, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+};
