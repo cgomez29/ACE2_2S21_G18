@@ -33,7 +33,7 @@ export const MayorUso = () => {
             <div className="graph-graph">
                 <BarGraph
                     value={data}
-                    title={'Dias de mayor uso'}
+                    title={'Dias de mayor uso (Dia/horas)'}
                     labels={label}
                 />
             </div>

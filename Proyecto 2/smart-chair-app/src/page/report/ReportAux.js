@@ -40,18 +40,4 @@ const ReportAux = () => {
     );
 };
 
-.content-graph {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    height: auto;
-}
-
-.graph {
-    max-width: 500px;
-    width: 100%;
-    height: 350px;
-}
-
-
 export default Report;
