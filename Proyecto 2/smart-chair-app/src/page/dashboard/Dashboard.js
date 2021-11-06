@@ -62,9 +62,9 @@ const Dashboard = () => {
     async function fecthLuz() {
       setTimeout( async () => {
         const { data } = await getRealTime();
-        if (data.luz < 200) {
+        if (data.luz < 30) {
           setLuz("No adecuada");
-        } else if (data.luz < 500) {
+        } else if (data.luz < 100) {
           setLuz("Adecuada");
         } else {
           setLuz("Perfecto");
