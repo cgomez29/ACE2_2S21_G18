@@ -20,16 +20,16 @@ export const MenorUso = () => {
 
       setMedia(data.data.tiempo_promedio);
 
-      data.data.semana.forEach(({ dia, uso }) => {
-        array.push(uso);
+      data.data.semana.forEach(({ dia, tiempo_promedio }) => {
+        array.push(tiempo_promedio);
       });
 
 
       let arrayLabel = [];
-      data.data.semana.forEach(({ dia, uso }) => {
+      data.data.semana.forEach(({ dia, tiempo_promedio }) => {
         arrayLabel.push(dia);
 
-        if(uso === 0){
+        if(tiempo_promedio === 0){
           arrNoUso.push(dia);
         }
 
