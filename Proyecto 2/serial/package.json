@@ -22,8 +22,8 @@
     "express": "4.17.1",
     "mongoose": "6.0.12",
     "morgan": "1.10.0",
-    "serialport": "^9.2.5",
-    "@serialport/parser-readline": "^9.2.4"
+    "serialport": "9.2.0",
+    "@serialport/parser-readline": "9.0.7"
   },
   "devDependencies": {
     "eslint": "7.32.0",
