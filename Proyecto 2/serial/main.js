@@ -16,7 +16,7 @@ serial.on('open', () => {
     .then((res) => {
       console.log(res)
     })
-    .catch((error) => console.log('sin datos'))
+    .catch(() => console.log('sin datos'))
 })
 
 parser.on('data', (data) => {
