@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
 import "./Dashboard.css";
-import { getAnalyzed, getRealTime, getData } from "../../helpers/servicesAPI";
+import { getAnalyzed, getRealTime } from "../../helpers/servicesAPI";
 import { PieMayorUso } from "../../components/Graph/PieMayorUso/PieMayorUso";
 import moment from "moment";
 import { LineGraph } from "../../components/LineGraph/LineGraph";
@@ -13,6 +13,8 @@ const Dashboard = () => {
   const [lineData, setLineData] = useState("");
   const [lineLabel, setLineLabel] = useState("");
   const [stop, setStop] = useState(false); //false
+  const [luz, setLuz] = useState("processing...");
+
   const [hoursMinSecs, setHoursMinSecs] = useState({
     hours: 0,
     minutes: 0,
@@ -39,11 +41,12 @@ const Dashboard = () => {
     fetch2();
 
     async function fetch3() {
-      const data = await getRealTime();
-      setData3(data.data);
-      let time = data.data.tiempo.split(":");
+      const { data } = await getRealTime();
 
-      if (data.data.inicio !== "00:00:00") {
+      setData3(data);
+      let time = data.tiempo.split(":");
+
+      if (data.inicio !== "00:00:00") {
         setHoursMinSecs({
           hours: parseInt(time[0]),
           minutes: parseInt(time[1]),
@@ -52,15 +55,40 @@ const Dashboard = () => {
         setStop(true);
       }
     }
-
     fetch3();
   }, []);
+
+  useEffect(() => {
+    async function fecthLuz() {
+      setTimeout( async () => {
+        const { data } = await getRealTime();
+        if (data.luz < 200) {
+          setLuz("No adecuada");
+        } else if (data.luz < 500) {
+          setLuz("Adecuada");
+        } else {
+          setLuz("Perfecto");
+        }
+      }, 5000);
+    }
+    fecthLuz()
+  });
 
   return (
     <div className="animate__animated animate__fadeIn">
       <h2 class="dash-title">WELCOME</h2>
       <div className="dash-cards">
-        <Card title={"ID"} value={"User: David Zea Chair: \n 1 Lugar: \n Cuarto de David, Mi Casa"} />
+        <Card
+          title={"ID"}
+          value={"User: David Zea"}
+          footer="Chair: 1 Lugar: Cuarto de David, Mi Casa"
+        />
+        <Card
+          title={"Luz de Ambiente"}
+          value={`${luz} `}
+          motivacion=""
+          footer="Encontrar la luz adecuada permite disfrutar de la actividad sin forzar la vista."
+        />
         <Card
           title={"Horas de uso"}
           icon={"ti-alarm-clock"}

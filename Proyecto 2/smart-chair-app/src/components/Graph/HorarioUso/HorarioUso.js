@@ -31,7 +31,7 @@ export const HorarioUso = () => {
             <br />
             <div className="graph-graph">
                 <LineGraph
-                    title="Horario de uso"
+                    title="Horario de uso (Dia/Hora)"
                     value={horario.usoLista}
                     labels={horario.diaLista}
                 />
