@@ -1,5 +1,7 @@
 export default function getTiempoPromedioDia(rawData) {
   const data = []
+  let total = 0
+  let totalDays = 0
 
   for (let i = 0; i <= 6; i++) {
     const filteredData = rawData.filter(
@@ -16,6 +18,7 @@ export default function getTiempoPromedioDia(rawData) {
     }
 
     const totalUsage = filteredData.length * (10 / 3600)
+    total += totalUsage
 
     const firstDate = filteredData[0].fecha
     const lastDate = filteredData[filteredData.length - 1].fecha
@@ -23,6 +26,7 @@ export default function getTiempoPromedioDia(rawData) {
     const days = Math.ceil(
       (lastDate.getTime() - firstDate.getTime()) / (1000 * 3600 * 24)
     )
+    totalDays += days
 
     const averageUsage = totalUsage / days
 
@@ -32,7 +36,10 @@ export default function getTiempoPromedioDia(rawData) {
     })
   }
 
-  return data
+  return {
+    tiempo_promedio: total / totalDays,
+    semana: data
+  }
 }
 
 const dayOfWeek = {

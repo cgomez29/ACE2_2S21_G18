@@ -18,26 +18,29 @@ export const MenorUso = () => {
       let array = [];
       let arrNoUso = [];
 
-      let m = 0;//media
-      data.data.data.forEach(({ dia, uso }) => {
-        array.push(uso);
-        m += uso;
-        
+      setMedia(data.data.tiempo_promedio);
+
+      data.data.semana.forEach(({ dia, tiempo_promedio }) => {
+        array.push(tiempo_promedio);
       });
 
-      setMedia((m/7).toFixed(2));
 
       let arrayLabel = [];
-      data.data.data.forEach(({ dia, uso }) => {
+      data.data.semana.forEach(({ dia, tiempo_promedio }) => {
         arrayLabel.push(dia);
 
-        if(uso === 0){
+        if(tiempo_promedio === 0){
           arrNoUso.push(dia);
         }
 
       });
 
-      setNoUso(arrNoUso);
+      if (arrNoUso.length !== 0) {
+        setNoUso(arrNoUso);
+      } else {
+        setNoUso(["Ningún dia"]);
+      }
+
       setData(array);
       setLabel(arrayLabel);
     }
@@ -57,7 +60,7 @@ export const MenorUso = () => {
       <div className="graph-graph">
         <BarGraph
           value={data}
-          title={"Dias de menor uso y de no uso"}
+          title={"Dias de menor uso y de no uso (Dia/horas)"}
           labels={label}
           media={media}
         />

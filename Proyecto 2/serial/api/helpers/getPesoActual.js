@@ -2,8 +2,10 @@ export default function getPesoActual(data){
     let peso = 0;
     let hora = '00:00:00';
     let tiempo = 0;
+    let luz = 0;
 
     data.forEach(dato => {
+        luz = dato.luz
         if (dato.peso != undefined){
             if (dato.peso == -1){
                 peso = 0
@@ -49,6 +51,7 @@ export default function getPesoActual(data){
     tiempo = convertTime(tiempo.toFixed(2))
     const jsonResult = {
         "peso": peso,
+        "luz": luz,
         "inicio": hora,
         "tiempo": tiempo
     }

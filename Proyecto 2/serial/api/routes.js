@@ -9,6 +9,7 @@ import getUsoSemana from './helpers/getUsoSemana.js'
 import getPesoActual from './helpers/getPesoActual.js'
 import getTiempoPromedioDia from './helpers/getTiempoPromedioDia.js'
 import getTiempoUltimosDias from './helpers/getTiempoUltimosDias.js'
+import getUsoPromedio from './helpers/getUsoPromedio.js'
 
 const appRouter = (app) => {
   app.post('/', (request, response) => {
@@ -38,14 +39,14 @@ const appRouter = (app) => {
   app.get('/analyzed', (request, response) => {
     RawData.find({}).then((rawData) => {
       const tiempo_total = getTiempoTotal(rawData)
-
+      const usoL = getUso(rawData)
       const analyzedDate = {
         tiempo_total,
         tiempo_promedio: getTiempoPromedio(rawData, tiempo_total),
-        uso_promedio: 0.5,
+        uso_promedio: getUsoPromedio(usoL),
         levantadas_promedio: getLevantadasPromedio(rawData),
         peso: getPeso(rawData),
-        uso: getUso(rawData)
+        uso: usoL
       }
 
       response.send(analyzedDate)
@@ -54,11 +55,7 @@ const appRouter = (app) => {
 
   app.get('/analyzed/avg', (request, response) => {
     RawData.find({}).then((rawData) => {
-      const tiempo_total = getTiempoTotal(rawData)
-      const data = {
-        tiempo_promedio: getTiempoPromedio(rawData, tiempo_total),
-        semana: getTiempoPromedioDia(rawData)
-      }
+      const data = getTiempoPromedioDia(rawData)
       response.send(data)
     })
   })
@@ -95,6 +92,31 @@ const appRouter = (app) => {
     })
   })
 
+  app.get('/analyzed/exceed', (request, response) => {
+    RawData.find({})
+      .then((rawData) => {
+        const [, horarios] = getHorarioUso(rawData)
+        // @ts-ignore
+        const data = horarios
+          .map(({ inicio, fin }) => {
+            const tiempo_total = (fin.getTime() - inicio.getTime()) / (1000 * 60 * 60)
+            return {
+              inicio,
+              fin,
+              tiempo_total,
+              tiempo_excedido: tiempo_total - 0.5
+            }
+          })
+          .filter(({ tiempo_excedido }) => tiempo_excedido > 0)
+
+        response.send(data)
+      })
+      .catch((error) => {
+        console.log(error)
+        response.status(400).send(error)
+      })
+  })
+
   app.get('/analyzed/:day', (request, response) => {
     let dateStart
     let dateEnd
@@ -110,10 +132,13 @@ const appRouter = (app) => {
       $and: [{ fecha: { $gte: dateStart } }, { fecha: { $lte: dateEnd } }]
     })
       .then((result) => {
-        const resultH = getHorarioUso(result);
+        const resultH = getHorarioUso(result)
         const jsonResult = {
           tiempo_total: resultH[0],
-          horarios: resultH[1] 
+          horarios: resultH[1].map(({ inicio, fin }) => ({
+            inicio: inicio.toLocaleTimeString(),
+            fin: fin.toLocaleTimeString()
+          }))
         }
         response.send(jsonResult)
       })
