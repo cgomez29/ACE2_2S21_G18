@@ -9,6 +9,7 @@ import getUsoSemana from './helpers/getUsoSemana.js'
 import getPesoActual from './helpers/getPesoActual.js'
 import getTiempoPromedioDia from './helpers/getTiempoPromedioDia.js'
 import getTiempoUltimosDias from './helpers/getTiempoUltimosDias.js'
+import getUsoPromedio from './helpers/getUsoPromedio.js'
 
 const appRouter = (app) => {
   app.post('/', (request, response) => {
@@ -38,14 +39,14 @@ const appRouter = (app) => {
   app.get('/analyzed', (request, response) => {
     RawData.find({}).then((rawData) => {
       const tiempo_total = getTiempoTotal(rawData)
-
+      const usoL = getUso(rawData)
       const analyzedDate = {
         tiempo_total,
         tiempo_promedio: getTiempoPromedio(rawData, tiempo_total),
-        uso_promedio: 0.5,
+        uso_promedio: getUsoPromedio(usoL),
         levantadas_promedio: getLevantadasPromedio(rawData),
         peso: getPeso(rawData),
-        uso: getUso(rawData)
+        uso: usoL
       }
 
       response.send(analyzedDate)
@@ -54,11 +55,7 @@ const appRouter = (app) => {
 
   app.get('/analyzed/avg', (request, response) => {
     RawData.find({}).then((rawData) => {
-      const tiempo_total = getTiempoTotal(rawData)
-      const data = {
-        tiempo_promedio: getTiempoPromedio(rawData, tiempo_total),
-        semana: getTiempoPromedioDia(rawData)
-      }
+      const data = getTiempoPromedioDia(rawData)
       response.send(data)
     })
   })
@@ -110,10 +107,10 @@ const appRouter = (app) => {
       $and: [{ fecha: { $gte: dateStart } }, { fecha: { $lte: dateEnd } }]
     })
       .then((result) => {
-        const resultH = getHorarioUso(result);
+        const resultH = getHorarioUso(result)
         const jsonResult = {
           tiempo_total: resultH[0],
-          horarios: resultH[1] 
+          horarios: resultH[1]
         }
         response.send(jsonResult)
       })
