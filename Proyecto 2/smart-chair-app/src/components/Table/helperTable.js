@@ -39,15 +39,11 @@ export const getDataCrud = async () => {
 
 export const getDataByDate = async (date) => {
     const res = await setAnalyzedDate(date);
-    const { data } = res.data;
-    let horaTotal = 0;
+    const { horarios, tiempo_total } = res.data;
 
-    data.forEach((data) => {
-        horaTotal += getTotalTime(data.inicio, data.fin);
-    });
     return {
-        listByDate: data,
-        horaTotal: horaTotal.toFixed(1),
+        listByDate: horarios,
+        horaTotal: Number.parseFloat(tiempo_total).toFixed(2),
     };
 };
 
